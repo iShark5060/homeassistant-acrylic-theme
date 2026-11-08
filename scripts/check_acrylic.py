@@ -6,7 +6,9 @@ import sys
 from pathlib import Path
 from urllib.parse import unquote
 
-THEME = Path(__file__).resolve().parents[1] / "themes" / "acrylic.yaml"
+ROOT = Path(__file__).resolve().parents[1]
+THEME = ROOT / "themes" / "acrylic.yaml"
+MENUS = ROOT / "acrylic-menus.js"
 FILTER = "blur(40px) saturate(200%) contrast(1.08)"
 
 
@@ -47,6 +49,10 @@ def main() -> None:
     need("dropdown menu element", text.count("#menu {") == 8)
     need("deep dropdown search", text.count("$$ ha-dropdown$") == 8)
     need("card yaml kept", text.count("card-mod-card-yaml:") == 2)
+    menus = MENUS.read_text(encoding="utf-8")
+    need("menu module", "patch(\"ha-dropdown\")" in menus and "#menu, #submenu" in menus)
+    need("menu module blur", "var(--ha-card-backdrop-filter)" in menus)
+    need("menu module has no brightness", "brightness(" not in menus)
 
     noises = []
     cursor = 0

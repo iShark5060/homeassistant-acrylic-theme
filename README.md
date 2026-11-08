@@ -29,6 +29,16 @@ Install one of these, not both.
 
 Load it as a frontend module, using that project's own instructions. A dashboard resource only covers Lovelace, so the sidebar and settings panels stay unstyled. UIX understands the `card-mod-*-yaml` keys in this theme.
 
+Select menus such as Background size draw their panel inside `ha-dropdown`. That panel's background comes from the component's own stylesheet, so the theme variables never reach it. Copy `acrylic-menus.js` to `config/www/acrylic-menus.js` and add it next to your other frontend module:
+
+```yaml
+frontend:
+  extra_module_url:
+    - /local/acrylic-menus.js
+```
+
+Restart Home Assistant after adding that line, then refresh the browser.
+
 ## Without HACS
 
 Copy `themes/acrylic.yaml` to `config/themes/acrylic.yaml` on the Home Assistant machine. Reload themes, then pick the theme in your profile. The `frontend` block above still has to be set.
