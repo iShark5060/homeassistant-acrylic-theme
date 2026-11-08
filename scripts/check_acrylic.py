@@ -37,6 +37,13 @@ def main() -> None:
     need("both mode maps", text.count("\n  modes:\n") == 2)
     need("old dark accent gone", "122, 162, 190" not in text)
     need("old light accent gone", "106, 116, 211" not in text)
+    need("menu surfaces", text.count("ha-dropdown::part(menu)") >= 8)
+    need("submenu surfaces", text.count("ha-dropdown-item::part(submenu)") >= 8)
+    need("picker surfaces", text.count("wa-popover::part(body)") >= 8)
+    need("select menus", text.count('"ha-control-select-menu$"') >= 2)
+    need("tile select features", text.count("hui-select-options-card-feature$") == 2)
+    need("bubble select tint", text.count("bubble-select-list-background-color: 'var(--ha-card-glass-tint)'") == 2)
+    need("card yaml kept", text.count("card-mod-card-yaml:") == 2)
 
     noises = []
     cursor = 0

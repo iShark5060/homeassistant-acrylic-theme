@@ -67,7 +67,7 @@ Acrylic Dark:
   bubble-pop-up-background-color: 'var(--frosted-glass-popup-surface)'
   bubble-backdrop-background-color: 'rgba(0, 0, 0, 0.32)'
   bubble-select-list-border-radius: '8px'
-  bubble-select-list-background-color: 'var(--frosted-glass-menu-surface)'
+  bubble-select-list-background-color: 'var(--ha-card-glass-tint)'
   bubble-select-list-item-accent-color: 'rgba(128, 109, 241, 0.24)'
   bubble-horizontal-buttons-stack-border-radius: '8px'
   bubble-horizontal-buttons-stack-background-color: 'transparent'
@@ -93,214 +93,337 @@ Acrylic Dark:
   # =========================
   # CARDS / CARD-MOD
   # =========================
-  card-mod-card: |
-    /* Blur lives on the card itself, same as the header. A ::before layer
-       paints over that blur and hides it. */
-    ha-card {
-      background: var(--ha-card-glass-tint);
-      backdrop-filter: var(--ha-card-backdrop-filter);
-      -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
-      position: relative;
-    }
-
-    :where(:host(:not(mushroom-template-card):not(room-summary-card))) ha-card::before {
-      content: none;
-    }
-
-    /* Grain sits above the blur and under the card text.
-       ponytail: Arsenal also paints a 4% exclusion veil. That needs a third layer.
-       These cards already spend ::before on the blur. */
-    :where(:host(:not(mushroom-template-card):not(room-summary-card))) ha-card::after {
-      content: var(--frosted-glass-card-layer-content, '');
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      border-radius: inherit;
-      background-image: var(--acrylic-noise);
-      background-size: 128px 128px;
-      opacity: 0.055;
-      mix-blend-mode: overlay;
-    }
-
-    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  card-mod-card-yaml: |
+    .: |
+      /* Blur lives on the card itself, same as the header. A ::before layer
+         paints over that blur and hides it. */
       ha-card {
-        background: var(--acrylic-fallback);
+        background: var(--ha-card-glass-tint);
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+        position: relative;
+      }
+
+      :where(:host(:not(mushroom-template-card):not(room-summary-card))) ha-card::before {
+        content: none;
+      }
+
+      /* Grain sits above the blur and under the card text.
+         ponytail: Arsenal also paints a 4% exclusion veil. That needs a third layer.
+         These cards already spend ::before on the blur. */
+      :where(:host(:not(mushroom-template-card):not(room-summary-card))) ha-card::after {
+        content: var(--frosted-glass-card-layer-content, '');
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        border-radius: inherit;
+        background-image: var(--acrylic-noise);
+        background-size: 128px 128px;
+        opacity: 0.055;
+        mix-blend-mode: overlay;
+      }
+
+      @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+        ha-card {
+          background: var(--acrylic-fallback);
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+        }
+      }
+
+      /* Containers and text-only cards leave their content's surface intact. */
+      :host(hui-heading-card) ha-card,
+      :host(.text-only) ha-card,
+      ha-card.text-only,
+      :host(mushroom-title-card) ha-card,
+      :host(mushroom-chips-card) ha-card {
+        --ha-card-background: transparent;
+        --ha-card-backdrop-filter: none;
+        --ha-card-box-shadow: none;
+        --frosted-glass-card-layer-content: none;
+        background: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+      :host(hui-heading-card) ha-card::before,
+      :host(.text-only) ha-card::before,
+      ha-card.text-only::before,
+      :host(mushroom-title-card) ha-card::before,
+      :host(mushroom-chips-card) ha-card::before,
+      :host(hui-heading-card) ha-card::after,
+      :host(.text-only) ha-card::after,
+      ha-card.text-only::after,
+      :host(mushroom-title-card) ha-card::after,
+      :host(mushroom-chips-card) ha-card::after {
+        content: none !important;
+      }
+
+      /* Bubble owns its rounded surface. Its blur layer cannot trap fixed menus. */
+      :host(bubble-card) ha-card,
+      :host(.type-custom-bubble-card) ha-card,
+      ha-card:has(.bubble-container) {
+        background: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border-radius: 0 !important;
+      }
+      :host(bubble-card) ha-card::before,
+      :host(.type-custom-bubble-card) ha-card::before,
+      ha-card:has(.bubble-container)::before,
+      :host(bubble-card) ha-card::after,
+      :host(.type-custom-bubble-card) ha-card::after,
+      ha-card:has(.bubble-container)::after {
+        content: none !important;
+      }
+      :where(:host(bubble-card), :host(.type-custom-bubble-card)) ha-card,
+      ha-card:where(:has(.bubble-container)) {
+        box-shadow: none;
+        border: none;
+      }
+      .bubble-container {
+        position: relative;
+        background: transparent !important;
+        box-shadow: var(--bubble-box-shadow);
+      }
+      .bubble-background {
+        background: transparent !important;
+        transition: none;
+      }
+      .bubble-container::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: inherit;
+        pointer-events: none;
+        background: var(--ha-card-glass-tint);
+        box-shadow: var(--ha-card-glass-inset-shadow);
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+      .bubble-container::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: inherit;
+        pointer-events: none;
+        background-image: var(--acrylic-noise);
+        background-size: 128px 128px;
+        opacity: 0.055;
+        mix-blend-mode: overlay;
+      }
+
+      /* Transparent Hue surfaces need the theme's matching foreground. */
+      :host(hue-like-light-card) ha-card,
+      :host(.type-custom-hue-like-light-card) ha-card {
+        --hue-text-color: var(--primary-text-color);
+        background: transparent !important;
+        color: var(--primary-text-color) !important;
+      }
+
+      /* Navbar resolves its native background against card-background-color.
+         Scope the transparent base here; menus elsewhere keep their opaque base.
+         Public --navbar-background-color overrides remain owned by the card/user. */
+      :host(navbar-card),
+      :host(.type-custom-navbar-card) {
+        --card-background-color: var(--ha-card-background, transparent);
+        --material-shadow-elevation-2dp: var(--ha-card-box-shadow);
+      }
+      .navbar ha-card,
+      :host(navbar-card) ha-card,
+      :host(.type-custom-navbar-card) ha-card {
+        --frosted-glass-card-layer-content: none;
+        box-shadow: var(--navbar-box-shadow-desktop, var(--ha-card-box-shadow));
+        background: var(--navbar-background-color, transparent);
+        backdrop-filter: var(--navbar-backdrop-filter);
+        -webkit-backdrop-filter: var(--navbar-backdrop-filter);
+        border: var(--ha-card-border);
+      }
+      :host(navbar-card) ha-card::after,
+      :host(.type-custom-navbar-card) ha-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        border-radius: inherit;
+        background-image: var(--acrylic-noise);
+        background-size: 128px 128px;
+        opacity: 0.055;
+        mix-blend-mode: overlay;
+      }
+      :host(navbar-card) .popup-item .button {
+        background: var(--ha-card-glass-tint);
+        backdrop-filter: var(--navbar-backdrop-filter);
+        -webkit-backdrop-filter: var(--navbar-backdrop-filter);
+        border: var(--ha-card-border);
+      }
+
+      :host(:where(slider-button-card, .type-custom-slider-button-card)) {
+        --btn-bg-color-off: var(--frosted-glass-slider-button-off);
+        --btn-bg-color-on: var(--frosted-glass-slider-button-on);
+        --slider-track-color: var(--frosted-glass-slider-track);
+      }
+
+      /* Room Summary already paints its own corner reflections. */
+      :where(:host(room-summary-card)) ha-card {
+        --ha-card-box-shadow: var(--frosted-glass-card-depth-shadow);
+      }
+
+      /* Leave both pseudo-elements available for Mushroom template artwork. */
+      :host(mushroom-template-card) ha-card {
+        background: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+
+      /* stack-in-card writes this inline only when keep.background is false and
+         --keep-background is not true. Honor that decision instead of hiding every
+         descendant, including those whose background was explicitly kept. */
+      ha-card[style*="background: transparent"] {
+        --ha-card-backdrop-filter: none;
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
+        border: none;
       }
-    }
+      ha-card[style*="background: transparent"]::before,
+      ha-card[style*="background: transparent"]::after {
+        content: none !important;
+      }
 
-    /* Containers and text-only cards leave their content's surface intact. */
-    :host(hui-heading-card) ha-card,
-    :host(.text-only) ha-card,
-    ha-card.text-only,
-    :host(mushroom-title-card) ha-card,
-    :host(mushroom-chips-card) ha-card {
-      --ha-card-background: transparent;
-      --ha-card-backdrop-filter: none;
-      --ha-card-box-shadow: none;
-      --frosted-glass-card-layer-content: none;
-      background: none !important;
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-      box-shadow: none !important;
-      border: none !important;
-    }
-    :host(hui-heading-card) ha-card::before,
-    :host(.text-only) ha-card::before,
-    ha-card.text-only::before,
-    :host(mushroom-title-card) ha-card::before,
-    :host(mushroom-chips-card) ha-card::before,
-    :host(hui-heading-card) ha-card::after,
-    :host(.text-only) ha-card::after,
-    ha-card.text-only::after,
-    :host(mushroom-title-card) ha-card::after,
-    :host(mushroom-chips-card) ha-card::after {
-      content: none !important;
-    }
+      .mdc-data-table {
+        background: none !important;
+      }
+      .mdc-data-table__header-cell {
+        background: var(--frosted-glass-control-surface);
+      }
 
-    /* Bubble owns its rounded surface. Its blur layer cannot trap fixed menus. */
-    :host(bubble-card) ha-card,
-    :host(.type-custom-bubble-card) ha-card,
-    ha-card:has(.bubble-container) {
-      background: none !important;
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-      border-radius: 0 !important;
-    }
-    :host(bubble-card) ha-card::before,
-    :host(.type-custom-bubble-card) ha-card::before,
-    ha-card:has(.bubble-container)::before,
-    :host(bubble-card) ha-card::after,
-    :host(.type-custom-bubble-card) ha-card::after,
-    ha-card:has(.bubble-container)::after {
-      content: none !important;
-    }
-    :where(:host(bubble-card), :host(.type-custom-bubble-card)) ha-card,
-    ha-card:where(:has(.bubble-container)) {
-      box-shadow: none;
-      border: none;
-    }
-    .bubble-container {
-      position: relative;
-      background: transparent !important;
-      box-shadow: var(--bubble-box-shadow);
-    }
-    .bubble-background {
-      background: transparent !important;
-      transition: none;
-    }
-    .bubble-container::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      border-radius: inherit;
-      pointer-events: none;
-      background: var(--ha-card-glass-tint);
-      box-shadow: var(--ha-card-glass-inset-shadow);
-      backdrop-filter: var(--ha-card-backdrop-filter);
-      -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
-    }
-    .bubble-container::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      border-radius: inherit;
-      pointer-events: none;
-      background-image: var(--acrylic-noise);
-      background-size: 128px 128px;
-      opacity: 0.055;
-      mix-blend-mode: overlay;
-    }
-
-    /* Transparent Hue surfaces need the theme's matching foreground. */
-    :host(hue-like-light-card) ha-card,
-    :host(.type-custom-hue-like-light-card) ha-card {
-      --hue-text-color: var(--primary-text-color);
-      background: transparent !important;
-      color: var(--primary-text-color) !important;
-    }
-
-    /* Navbar resolves its native background against card-background-color.
-       Scope the transparent base here; menus elsewhere keep their opaque base.
-       Public --navbar-background-color overrides remain owned by the card/user. */
-    :host(navbar-card),
-    :host(.type-custom-navbar-card) {
-      --card-background-color: var(--ha-card-background, transparent);
-      --material-shadow-elevation-2dp: var(--ha-card-box-shadow);
-    }
-    .navbar ha-card,
-    :host(navbar-card) ha-card,
-    :host(.type-custom-navbar-card) ha-card {
-      --frosted-glass-card-layer-content: none;
-      box-shadow: var(--navbar-box-shadow-desktop, var(--ha-card-box-shadow));
-      background: var(--navbar-background-color, transparent);
-      backdrop-filter: var(--navbar-backdrop-filter);
-      -webkit-backdrop-filter: var(--navbar-backdrop-filter);
-      border: var(--ha-card-border);
-    }
-    :host(navbar-card) ha-card::after,
-    :host(.type-custom-navbar-card) ha-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      border-radius: inherit;
-      background-image: var(--acrylic-noise);
-      background-size: 128px 128px;
-      opacity: 0.055;
-      mix-blend-mode: overlay;
-    }
-    :host(navbar-card) .popup-item .button {
-      background: var(--ha-card-glass-tint);
-      backdrop-filter: var(--navbar-backdrop-filter);
-      -webkit-backdrop-filter: var(--navbar-backdrop-filter);
-      border: var(--ha-card-border);
-    }
-
-    :host(:where(slider-button-card, .type-custom-slider-button-card)) {
-      --btn-bg-color-off: var(--frosted-glass-slider-button-off);
-      --btn-bg-color-on: var(--frosted-glass-slider-button-on);
-      --slider-track-color: var(--frosted-glass-slider-track);
-    }
-
-    /* Room Summary already paints its own corner reflections. */
-    :where(:host(room-summary-card)) ha-card {
-      --ha-card-box-shadow: var(--frosted-glass-card-depth-shadow);
-    }
-
-    /* Leave both pseudo-elements available for Mushroom template artwork. */
-    :host(mushroom-template-card) ha-card {
-      background: var(--ha-card-glass-tint) !important;
-      backdrop-filter: var(--ha-card-backdrop-filter);
-      -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
-    }
-
-    /* stack-in-card writes this inline only when keep.background is false and
-       --keep-background is not true. Honor that decision instead of hiding every
-       descendant, including those whose background was explicitly kept. */
-    ha-card[style*="background: transparent"] {
-      --ha-card-backdrop-filter: none;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      border: none;
-    }
-    ha-card[style*="background: transparent"]::before,
-    ha-card[style*="background: transparent"]::after {
-      content: none !important;
-    }
-
-    .mdc-data-table {
-      background: none !important;
-    }
-    .mdc-data-table__header-cell {
-      background: var(--frosted-glass-control-surface);
-    }
-
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-generic-picker$": &acrylic-menu |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface,
+      wa-popover::part(body) {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-control-select-menu$": *acrylic-menu
+    "ha-select$": *acrylic-menu
+    "ha-base-time-input$": *acrylic-menu
+    "ha-date-range-picker$": *acrylic-menu
+    "hui-card-features$":
+      "hui-card-feature$":
+        "hui-climate-fan-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-climate-hvac-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-climate-preset-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-climate-swing-horizontal-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-climate-swing-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-fan-preset-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-humidifier-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-light-effect-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-media-player-sound-mode-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-media-player-source-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-select-options-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-vacuum-fan-speed-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-water-heater-operation-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+  card-mod-dialog-yaml: |
+    .: |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-generic-picker$": &acrylic-menu |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface,
+      wa-popover::part(body) {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-control-select-menu$": *acrylic-menu
+    "ha-select$": *acrylic-menu
+    "ha-base-time-input$": *acrylic-menu
+    "ha-date-range-picker$": *acrylic-menu
+  card-mod-more-info-yaml: |
+    .: |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-generic-picker$": &acrylic-menu |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface,
+      wa-popover::part(body) {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-control-select-menu$": *acrylic-menu
+    "ha-select$": *acrylic-menu
+    "ha-base-time-input$": *acrylic-menu
+    "ha-date-range-picker$": *acrylic-menu
+  card-mod-view-yaml: |
+    .: |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-generic-picker$": &acrylic-menu |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface,
+      wa-popover::part(body) {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-control-select-menu$": *acrylic-menu
+    "ha-select$": *acrylic-menu
+    "ha-base-time-input$": *acrylic-menu
+    "ha-date-range-picker$": *acrylic-menu
   # Global glass tokens are inherited by dialogs, sidebar and custom cards.
   ha-card-backdrop-filter: 'blur(40px) saturate(200%) contrast(1.08)'
   ha-card-glass-tint: 'rgba(28, 28, 30, 0.55)'
@@ -490,6 +613,15 @@ Acrylic Dark:
       --token-color-indigo: rgb(var(--token-rgb-indigo));
       --token-color-deep-purple: rgb(var(--token-rgb-deep-purple));
       --token-color-light-blue: rgb(var(--token-rgb-light-blue));
+    }
+
+    ha-dropdown::part(menu),
+    ha-dropdown-item::part(submenu),
+    .mdc-menu-surface {
+      background: var(--ha-card-glass-tint) !important;
+      background-color: var(--ha-card-glass-tint) !important;
+      backdrop-filter: var(--ha-card-backdrop-filter);
+      -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
     }
 
   # =========================
@@ -780,7 +912,7 @@ Acrylic Light:
   bubble-pop-up-background-color: 'var(--frosted-glass-popup-surface)'
   bubble-backdrop-background-color: 'rgba(16, 24, 43, 0.18)'
   bubble-select-list-border-radius: '8px'
-  bubble-select-list-background-color: 'var(--frosted-glass-menu-surface)'
+  bubble-select-list-background-color: 'var(--ha-card-glass-tint)'
   bubble-select-list-item-accent-color: 'rgba(85, 64, 176, 0.24)'
   bubble-horizontal-buttons-stack-border-radius: '8px'
   bubble-horizontal-buttons-stack-background-color: 'transparent'
@@ -806,214 +938,337 @@ Acrylic Light:
   # =========================
   # CARDS / CARD-MOD
   # =========================
-  card-mod-card: |
-    /* Blur lives on the card itself, same as the header. A ::before layer
-       paints over that blur and hides it. */
-    ha-card {
-      background: var(--ha-card-glass-tint);
-      backdrop-filter: var(--ha-card-backdrop-filter);
-      -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
-      position: relative;
-    }
-
-    :where(:host(:not(mushroom-template-card):not(room-summary-card))) ha-card::before {
-      content: none;
-    }
-
-    /* Grain sits above the blur and under the card text.
-       ponytail: Arsenal also paints a 4% exclusion veil. That needs a third layer.
-       These cards already spend ::before on the blur. */
-    :where(:host(:not(mushroom-template-card):not(room-summary-card))) ha-card::after {
-      content: var(--frosted-glass-card-layer-content, '');
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      border-radius: inherit;
-      background-image: var(--acrylic-noise);
-      background-size: 128px 128px;
-      opacity: 0.055;
-      mix-blend-mode: overlay;
-    }
-
-    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  card-mod-card-yaml: |
+    .: |
+      /* Blur lives on the card itself, same as the header. A ::before layer
+         paints over that blur and hides it. */
       ha-card {
-        background: var(--acrylic-fallback);
+        background: var(--ha-card-glass-tint);
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+        position: relative;
+      }
+
+      :where(:host(:not(mushroom-template-card):not(room-summary-card))) ha-card::before {
+        content: none;
+      }
+
+      /* Grain sits above the blur and under the card text.
+         ponytail: Arsenal also paints a 4% exclusion veil. That needs a third layer.
+         These cards already spend ::before on the blur. */
+      :where(:host(:not(mushroom-template-card):not(room-summary-card))) ha-card::after {
+        content: var(--frosted-glass-card-layer-content, '');
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        border-radius: inherit;
+        background-image: var(--acrylic-noise);
+        background-size: 128px 128px;
+        opacity: 0.055;
+        mix-blend-mode: overlay;
+      }
+
+      @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+        ha-card {
+          background: var(--acrylic-fallback);
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+        }
+      }
+
+      /* Containers and text-only cards leave their content's surface intact. */
+      :host(hui-heading-card) ha-card,
+      :host(.text-only) ha-card,
+      ha-card.text-only,
+      :host(mushroom-title-card) ha-card,
+      :host(mushroom-chips-card) ha-card {
+        --ha-card-background: transparent;
+        --ha-card-backdrop-filter: none;
+        --ha-card-box-shadow: none;
+        --frosted-glass-card-layer-content: none;
+        background: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+      :host(hui-heading-card) ha-card::before,
+      :host(.text-only) ha-card::before,
+      ha-card.text-only::before,
+      :host(mushroom-title-card) ha-card::before,
+      :host(mushroom-chips-card) ha-card::before,
+      :host(hui-heading-card) ha-card::after,
+      :host(.text-only) ha-card::after,
+      ha-card.text-only::after,
+      :host(mushroom-title-card) ha-card::after,
+      :host(mushroom-chips-card) ha-card::after {
+        content: none !important;
+      }
+
+      /* Bubble owns its rounded surface. Its blur layer cannot trap fixed menus. */
+      :host(bubble-card) ha-card,
+      :host(.type-custom-bubble-card) ha-card,
+      ha-card:has(.bubble-container) {
+        background: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border-radius: 0 !important;
+      }
+      :host(bubble-card) ha-card::before,
+      :host(.type-custom-bubble-card) ha-card::before,
+      ha-card:has(.bubble-container)::before,
+      :host(bubble-card) ha-card::after,
+      :host(.type-custom-bubble-card) ha-card::after,
+      ha-card:has(.bubble-container)::after {
+        content: none !important;
+      }
+      :where(:host(bubble-card), :host(.type-custom-bubble-card)) ha-card,
+      ha-card:where(:has(.bubble-container)) {
+        box-shadow: none;
+        border: none;
+      }
+      .bubble-container {
+        position: relative;
+        background: transparent !important;
+        box-shadow: var(--bubble-box-shadow);
+      }
+      .bubble-background {
+        background: transparent !important;
+        transition: none;
+      }
+      .bubble-container::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: inherit;
+        pointer-events: none;
+        background: var(--ha-card-glass-tint);
+        box-shadow: var(--ha-card-glass-inset-shadow);
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+      .bubble-container::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: inherit;
+        pointer-events: none;
+        background-image: var(--acrylic-noise);
+        background-size: 128px 128px;
+        opacity: 0.055;
+        mix-blend-mode: overlay;
+      }
+
+      /* Transparent Hue surfaces need the theme's matching foreground. */
+      :host(hue-like-light-card) ha-card,
+      :host(.type-custom-hue-like-light-card) ha-card {
+        --hue-text-color: var(--primary-text-color);
+        background: transparent !important;
+        color: var(--primary-text-color) !important;
+      }
+
+      /* Navbar resolves its native background against card-background-color.
+         Scope the transparent base here; menus elsewhere keep their opaque base.
+         Public --navbar-background-color overrides remain owned by the card/user. */
+      :host(navbar-card),
+      :host(.type-custom-navbar-card) {
+        --card-background-color: var(--ha-card-background, transparent);
+        --material-shadow-elevation-2dp: var(--ha-card-box-shadow);
+      }
+      .navbar ha-card,
+      :host(navbar-card) ha-card,
+      :host(.type-custom-navbar-card) ha-card {
+        --frosted-glass-card-layer-content: none;
+        box-shadow: var(--navbar-box-shadow-desktop, var(--ha-card-box-shadow));
+        background: var(--navbar-background-color, transparent);
+        backdrop-filter: var(--navbar-backdrop-filter);
+        -webkit-backdrop-filter: var(--navbar-backdrop-filter);
+        border: var(--ha-card-border);
+      }
+      :host(navbar-card) ha-card::after,
+      :host(.type-custom-navbar-card) ha-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        border-radius: inherit;
+        background-image: var(--acrylic-noise);
+        background-size: 128px 128px;
+        opacity: 0.055;
+        mix-blend-mode: overlay;
+      }
+      :host(navbar-card) .popup-item .button {
+        background: var(--ha-card-glass-tint);
+        backdrop-filter: var(--navbar-backdrop-filter);
+        -webkit-backdrop-filter: var(--navbar-backdrop-filter);
+        border: var(--ha-card-border);
+      }
+
+      :host(:where(slider-button-card, .type-custom-slider-button-card)) {
+        --btn-bg-color-off: var(--frosted-glass-slider-button-off);
+        --btn-bg-color-on: var(--frosted-glass-slider-button-on);
+        --slider-track-color: var(--frosted-glass-slider-track);
+      }
+
+      /* Room Summary already paints its own corner reflections. */
+      :where(:host(room-summary-card)) ha-card {
+        --ha-card-box-shadow: var(--frosted-glass-card-depth-shadow);
+      }
+
+      /* Leave both pseudo-elements available for Mushroom template artwork. */
+      :host(mushroom-template-card) ha-card {
+        background: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+
+      /* stack-in-card writes this inline only when keep.background is false and
+         --keep-background is not true. Honor that decision instead of hiding every
+         descendant, including those whose background was explicitly kept. */
+      ha-card[style*="background: transparent"] {
+        --ha-card-backdrop-filter: none;
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
+        border: none;
       }
-    }
+      ha-card[style*="background: transparent"]::before,
+      ha-card[style*="background: transparent"]::after {
+        content: none !important;
+      }
 
-    /* Containers and text-only cards leave their content's surface intact. */
-    :host(hui-heading-card) ha-card,
-    :host(.text-only) ha-card,
-    ha-card.text-only,
-    :host(mushroom-title-card) ha-card,
-    :host(mushroom-chips-card) ha-card {
-      --ha-card-background: transparent;
-      --ha-card-backdrop-filter: none;
-      --ha-card-box-shadow: none;
-      --frosted-glass-card-layer-content: none;
-      background: none !important;
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-      box-shadow: none !important;
-      border: none !important;
-    }
-    :host(hui-heading-card) ha-card::before,
-    :host(.text-only) ha-card::before,
-    ha-card.text-only::before,
-    :host(mushroom-title-card) ha-card::before,
-    :host(mushroom-chips-card) ha-card::before,
-    :host(hui-heading-card) ha-card::after,
-    :host(.text-only) ha-card::after,
-    ha-card.text-only::after,
-    :host(mushroom-title-card) ha-card::after,
-    :host(mushroom-chips-card) ha-card::after {
-      content: none !important;
-    }
+      .mdc-data-table {
+        background: none !important;
+      }
+      .mdc-data-table__header-cell {
+        background: var(--frosted-glass-control-surface);
+      }
 
-    /* Bubble owns its rounded surface. Its blur layer cannot trap fixed menus. */
-    :host(bubble-card) ha-card,
-    :host(.type-custom-bubble-card) ha-card,
-    ha-card:has(.bubble-container) {
-      background: none !important;
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-      border-radius: 0 !important;
-    }
-    :host(bubble-card) ha-card::before,
-    :host(.type-custom-bubble-card) ha-card::before,
-    ha-card:has(.bubble-container)::before,
-    :host(bubble-card) ha-card::after,
-    :host(.type-custom-bubble-card) ha-card::after,
-    ha-card:has(.bubble-container)::after {
-      content: none !important;
-    }
-    :where(:host(bubble-card), :host(.type-custom-bubble-card)) ha-card,
-    ha-card:where(:has(.bubble-container)) {
-      box-shadow: none;
-      border: none;
-    }
-    .bubble-container {
-      position: relative;
-      background: transparent !important;
-      box-shadow: var(--bubble-box-shadow);
-    }
-    .bubble-background {
-      background: transparent !important;
-      transition: none;
-    }
-    .bubble-container::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      border-radius: inherit;
-      pointer-events: none;
-      background: var(--ha-card-glass-tint);
-      box-shadow: var(--ha-card-glass-inset-shadow);
-      backdrop-filter: var(--ha-card-backdrop-filter);
-      -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
-    }
-    .bubble-container::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      border-radius: inherit;
-      pointer-events: none;
-      background-image: var(--acrylic-noise);
-      background-size: 128px 128px;
-      opacity: 0.055;
-      mix-blend-mode: overlay;
-    }
-
-    /* Transparent Hue surfaces need the theme's matching foreground. */
-    :host(hue-like-light-card) ha-card,
-    :host(.type-custom-hue-like-light-card) ha-card {
-      --hue-text-color: var(--primary-text-color);
-      background: transparent !important;
-      color: var(--primary-text-color) !important;
-    }
-
-    /* Navbar resolves its native background against card-background-color.
-       Scope the transparent base here; menus elsewhere keep their opaque base.
-       Public --navbar-background-color overrides remain owned by the card/user. */
-    :host(navbar-card),
-    :host(.type-custom-navbar-card) {
-      --card-background-color: var(--ha-card-background, transparent);
-      --material-shadow-elevation-2dp: var(--ha-card-box-shadow);
-    }
-    .navbar ha-card,
-    :host(navbar-card) ha-card,
-    :host(.type-custom-navbar-card) ha-card {
-      --frosted-glass-card-layer-content: none;
-      box-shadow: var(--navbar-box-shadow-desktop, var(--ha-card-box-shadow));
-      background: var(--navbar-background-color, transparent);
-      backdrop-filter: var(--navbar-backdrop-filter);
-      -webkit-backdrop-filter: var(--navbar-backdrop-filter);
-      border: var(--ha-card-border);
-    }
-    :host(navbar-card) ha-card::after,
-    :host(.type-custom-navbar-card) ha-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      border-radius: inherit;
-      background-image: var(--acrylic-noise);
-      background-size: 128px 128px;
-      opacity: 0.055;
-      mix-blend-mode: overlay;
-    }
-    :host(navbar-card) .popup-item .button {
-      background: var(--ha-card-glass-tint);
-      backdrop-filter: var(--navbar-backdrop-filter);
-      -webkit-backdrop-filter: var(--navbar-backdrop-filter);
-      border: var(--ha-card-border);
-    }
-
-    :host(:where(slider-button-card, .type-custom-slider-button-card)) {
-      --btn-bg-color-off: var(--frosted-glass-slider-button-off);
-      --btn-bg-color-on: var(--frosted-glass-slider-button-on);
-      --slider-track-color: var(--frosted-glass-slider-track);
-    }
-
-    /* Room Summary already paints its own corner reflections. */
-    :where(:host(room-summary-card)) ha-card {
-      --ha-card-box-shadow: var(--frosted-glass-card-depth-shadow);
-    }
-
-    /* Leave both pseudo-elements available for Mushroom template artwork. */
-    :host(mushroom-template-card) ha-card {
-      background: var(--ha-card-glass-tint) !important;
-      backdrop-filter: var(--ha-card-backdrop-filter);
-      -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
-    }
-
-    /* stack-in-card writes this inline only when keep.background is false and
-       --keep-background is not true. Honor that decision instead of hiding every
-       descendant, including those whose background was explicitly kept. */
-    ha-card[style*="background: transparent"] {
-      --ha-card-backdrop-filter: none;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      border: none;
-    }
-    ha-card[style*="background: transparent"]::before,
-    ha-card[style*="background: transparent"]::after {
-      content: none !important;
-    }
-
-    .mdc-data-table {
-      background: none !important;
-    }
-    .mdc-data-table__header-cell {
-      background: var(--frosted-glass-control-surface);
-    }
-
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-generic-picker$": &acrylic-menu |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface,
+      wa-popover::part(body) {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-control-select-menu$": *acrylic-menu
+    "ha-select$": *acrylic-menu
+    "ha-base-time-input$": *acrylic-menu
+    "ha-date-range-picker$": *acrylic-menu
+    "hui-card-features$":
+      "hui-card-feature$":
+        "hui-climate-fan-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-climate-hvac-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-climate-preset-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-climate-swing-horizontal-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-climate-swing-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-fan-preset-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-humidifier-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-light-effect-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-media-player-sound-mode-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-media-player-source-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-select-options-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-vacuum-fan-speed-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-water-heater-operation-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+  card-mod-dialog-yaml: |
+    .: |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-generic-picker$": &acrylic-menu |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface,
+      wa-popover::part(body) {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-control-select-menu$": *acrylic-menu
+    "ha-select$": *acrylic-menu
+    "ha-base-time-input$": *acrylic-menu
+    "ha-date-range-picker$": *acrylic-menu
+  card-mod-more-info-yaml: |
+    .: |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-generic-picker$": &acrylic-menu |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface,
+      wa-popover::part(body) {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-control-select-menu$": *acrylic-menu
+    "ha-select$": *acrylic-menu
+    "ha-base-time-input$": *acrylic-menu
+    "ha-date-range-picker$": *acrylic-menu
+  card-mod-view-yaml: |
+    .: |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-generic-picker$": &acrylic-menu |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface,
+      wa-popover::part(body) {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-control-select-menu$": *acrylic-menu
+    "ha-select$": *acrylic-menu
+    "ha-base-time-input$": *acrylic-menu
+    "ha-date-range-picker$": *acrylic-menu
   # Global glass tokens are inherited by dialogs, sidebar and custom cards.
   ha-card-backdrop-filter: 'blur(40px) saturate(200%) contrast(1.08)'
   ha-card-glass-tint: 'rgba(243, 243, 245, 0.55)'
@@ -1202,6 +1457,15 @@ Acrylic Light:
       --token-color-indigo: rgb(var(--token-rgb-indigo));
       --token-color-deep-purple: rgb(var(--token-rgb-deep-purple));
       --token-color-light-blue: rgb(var(--token-rgb-light-blue));
+    }
+
+    ha-dropdown::part(menu),
+    ha-dropdown-item::part(submenu),
+    .mdc-menu-surface {
+      background: var(--ha-card-glass-tint) !important;
+      background-color: var(--ha-card-glass-tint) !important;
+      backdrop-filter: var(--ha-card-backdrop-filter);
+      -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
     }
 
   # =========================
