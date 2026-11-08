@@ -1,0 +1,12 @@
+{
+  "domain": "acrylic",
+  "name": "Acrylic",
+  "codeowners": ["@shark5060"],
+  "config_flow": true,
+  "dependencies": ["frontend"],
+  "documentation": "https://git.darkavianlabs.com/shark5060/homeassistant-acrylic-theme",
+  "integration_type": "service",
+  "iot_class": "local_push",
+  "requirements": [],
+  "version": "1.0.0"
+}

@@ -1,0 +1,12 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "description": "Serves the menu script and refreshes the Acrylic theme file."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Acrylic is already set up."
+    }
+  }
+}

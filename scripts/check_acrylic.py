@@ -8,7 +8,8 @@ from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[1]
 THEME = ROOT / "themes" / "acrylic.yaml"
-MENUS = ROOT / "acrylic-menus.js"
+BUNDLED = ROOT / "custom_components" / "acrylic" / "acrylic.yaml"
+MENUS = ROOT / "custom_components" / "acrylic" / "frontend" / "acrylic-menus.js"
 FILTER = "blur(40px) saturate(200%) contrast(1.08)"
 
 
@@ -50,9 +51,10 @@ def main() -> None:
     need("deep dropdown search", text.count("$$ ha-dropdown$") == 8)
     need("card yaml kept", text.count("card-mod-card-yaml:") == 2)
     menus = MENUS.read_text(encoding="utf-8")
-    need("menu module", "patch(\"ha-dropdown\")" in menus and "#menu, #submenu" in menus)
+    need("menu module", 'patch("ha-dropdown")' in menus and "#menu, #submenu" in menus)
     need("menu module blur", "var(--ha-card-backdrop-filter)" in menus)
     need("menu module has no brightness", "brightness(" not in menus)
+    need("bundled theme matches", BUNDLED.read_bytes() == THEME.read_bytes())
 
     noises = []
     cursor = 0

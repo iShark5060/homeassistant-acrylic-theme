@@ -1,0 +1,1882 @@
+# Acrylic for Home Assistant
+# Dark and light. Glass behavior comes from Frosted Glass by Wessam Lauf (MIT).
+# The paint is the Arsenal Acrylic style.
+#
+# blur(40px) saturate(200%) contrast(1.08)
+# 55% tint, 8px corners, 0.5px top highlight, tiled noise
+#
+# Copy this file to config/themes/acrylic.yaml
+# Restart Home Assistant, or reload themes.
+# Then pick Acrylic Dark or Acrylic Light in your profile.
+# UIX or card-mod has to be installed, and loaded as a frontend module for the sidebar.
+
+
+Acrylic Dark:
+  card-mod-theme: 'Acrylic Dark'
+  uix-theme: 'Acrylic Dark'
+  acrylic-noise: "url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256%22%20height%3D%22256%22%3E%3Cfilter%20id%3D%22n%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.8%22%20numOctaves%3D%224%22%20stitchTiles%3D%22stitch%22%20seed%3D%223%22%2F%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22256%22%20height%3D%22256%22%20filter%3D%22url%28%23n%29%22%2F%3E%3C%2Fsvg%3E')"
+  acrylic-fallback: '#2C2C2C'
+
+  # =========================
+  # HEADER (Top Bar)
+  # =========================
+  app-header-backdrop-filter: 'blur(40px) saturate(200%) contrast(1.08)'
+  app-header-background-color: 'rgba(28, 28, 30, 0.55)'
+  app-header-text-color: 'rgb(239, 242, 246)'
+  app-header-edit-background-color: 'var(--app-header-background-color)'
+  app-header-edit-text-color: 'rgb(239, 242, 246)'
+  app-theme-color: 'rgb(5, 7, 13)'
+
+  # =========================
+  # SIDEBAR / DRAWER
+  # =========================
+  sidebar-background-color: 'rgba(28, 28, 30, 0.55)'
+  sidebar-backdrop-filter: 'blur(40px) saturate(200%) contrast(1.08)'
+  sidebar-border-color: 'rgba(255, 255, 255, 0.08)'
+  sidebar-icon-color: 'rgb(178, 184, 193)'
+  sidebar-text-color: 'rgb(178, 184, 193)'
+  sidebar-selected-icon-color: 'rgb(239, 242, 246)'
+  sidebar-selected-text-color: 'rgb(239, 242, 246)'
+
+  # =========================
+  # DIALOGS
+  # =========================
+  # Keep this surface unfiltered so legacy fixed-position menus retain the viewport.
+  ha-dialog-surface-backdrop-filter: 'var(--frosted-glass-popup-backdrop-filter) blur(calc(0 * var(--ha-space-1)))'
+  ha-dialog-surface-background: 'color-mix(in srgb, var(--frosted-glass-popup-surface), var(--ha-color-neutral-50) 0%)'
+  dialog-box-shadow: '0 2px 4px rgba(0, 0, 0, 0.12), 0 12px 28px rgba(0, 0, 0, 0.28), 0 32px 80px rgba(0, 0, 0, 0.38)'
+  paper-dialog-background-color: 'rgb(44, 44, 44)'
+  mdc-dialog-scrim-color: 'var(--frosted-glass-popup-scrim)'
+
+  # =========================
+  # THIRD-PARTY CARD CONTRACTS
+  # =========================
+  # Bubble Card: official global theme variables.
+  bubble-border-radius: '8px'
+  bubble-main-background-color: 'transparent'
+  bubble-secondary-background-color: 'rgba(255, 255, 255, 0.06)'
+  bubble-accent-color: 'rgb(128, 109, 241)'
+  bubble-icon-border-radius: '4px'
+  bubble-icon-background-color: 'rgba(255, 255, 255, 0.06)'
+  bubble-sub-button-border-radius: '4px'
+  bubble-sub-button-background-color: 'rgba(255, 255, 255, 0.06)'
+  bubble-box-shadow: 'var(--frosted-glass-card-depth-shadow)'
+  bubble-border: '1px solid rgba(255, 255, 255, 0.08)'
+  bubble-pop-up-border-radius: '8px'
+  bubble-pop-up-main-background-color: 'var(--frosted-glass-popup-surface)'
+  bubble-pop-up-background-color: 'var(--frosted-glass-popup-surface)'
+  bubble-backdrop-background-color: 'rgba(0, 0, 0, 0.32)'
+  bubble-select-list-border-radius: '8px'
+  bubble-select-list-background-color: 'var(--ha-card-glass-tint)'
+  bubble-select-list-item-accent-color: 'rgba(128, 109, 241, 0.24)'
+  bubble-horizontal-buttons-stack-border-radius: '8px'
+  bubble-horizontal-buttons-stack-background-color: 'transparent'
+
+  # Navbar Card: official variables plus a theme-owned filter consumed below.
+  navbar-background-color: 'rgba(28, 28, 30, 0.55)'
+  navbar-primary-color: 'rgb(128, 109, 241)'
+  navbar-border-radius: '8px'
+  navbar-box-shadow: 'var(--ha-card-box-shadow)'
+  navbar-box-shadow-desktop: 'var(--ha-card-box-shadow)'
+  navbar-box-shadow-mobile-floating: 'var(--ha-card-box-shadow)'
+  navbar-backdrop-filter: 'blur(40px) saturate(200%) contrast(1.08)'
+
+  # Simple Swipe Card and Slider Button Card public variables.
+  simple-swipe-card-pagination-background: 'transparent'
+  simple-swipe-card-pagination-dot-inactive-color: 'rgba(239, 242, 246, 0.34)'
+  simple-swipe-card-pagination-dot-active-color: 'rgb(128, 109, 241)'
+  simple-swipe-card-pagination-dot-active-box-shadow: '0 0 12px rgba(128, 109, 241, 0.34)'
+  btn-bg-color-off: 'rgba(255, 255, 255, 0.06)'
+  btn-bg-color-on: 'rgba(128, 109, 241, 0.22)'
+  slider-track-color: 'rgba(255, 255, 255, 0.16)'
+
+  # =========================
+  # CARDS / CARD-MOD
+  # =========================
+  card-mod-card-yaml: |
+    .: |
+      /* Blur lives on the card itself, same as the header. A ::before layer
+         paints over that blur and hides it. */
+      ha-card {
+        background: var(--ha-card-glass-tint);
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+        position: relative;
+      }
+
+      :where(:host(:not(mushroom-template-card):not(room-summary-card))) ha-card::before {
+        content: none;
+      }
+
+      /* Grain sits above the blur and under the card text.
+         ponytail: Arsenal also paints a 4% exclusion veil. That needs a third layer.
+         These cards already spend ::before on the blur. */
+      :where(:host(:not(mushroom-template-card):not(room-summary-card))) ha-card::after {
+        content: var(--frosted-glass-card-layer-content, '');
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        border-radius: inherit;
+        background-image: var(--acrylic-noise);
+        background-size: 128px 128px;
+        opacity: 0.055;
+        mix-blend-mode: overlay;
+      }
+
+      @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+        ha-card {
+          background: var(--acrylic-fallback);
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+        }
+      }
+
+      /* Containers and text-only cards leave their content's surface intact. */
+      :host(hui-heading-card) ha-card,
+      :host(.text-only) ha-card,
+      ha-card.text-only,
+      :host(mushroom-title-card) ha-card,
+      :host(mushroom-chips-card) ha-card {
+        --ha-card-background: transparent;
+        --ha-card-backdrop-filter: none;
+        --ha-card-box-shadow: none;
+        --frosted-glass-card-layer-content: none;
+        background: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+      :host(hui-heading-card) ha-card::before,
+      :host(.text-only) ha-card::before,
+      ha-card.text-only::before,
+      :host(mushroom-title-card) ha-card::before,
+      :host(mushroom-chips-card) ha-card::before,
+      :host(hui-heading-card) ha-card::after,
+      :host(.text-only) ha-card::after,
+      ha-card.text-only::after,
+      :host(mushroom-title-card) ha-card::after,
+      :host(mushroom-chips-card) ha-card::after {
+        content: none !important;
+      }
+
+      /* Bubble owns its rounded surface. Its blur layer cannot trap fixed menus. */
+      :host(bubble-card) ha-card,
+      :host(.type-custom-bubble-card) ha-card,
+      ha-card:has(.bubble-container) {
+        background: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border-radius: 0 !important;
+      }
+      :host(bubble-card) ha-card::before,
+      :host(.type-custom-bubble-card) ha-card::before,
+      ha-card:has(.bubble-container)::before,
+      :host(bubble-card) ha-card::after,
+      :host(.type-custom-bubble-card) ha-card::after,
+      ha-card:has(.bubble-container)::after {
+        content: none !important;
+      }
+      :where(:host(bubble-card), :host(.type-custom-bubble-card)) ha-card,
+      ha-card:where(:has(.bubble-container)) {
+        box-shadow: none;
+        border: none;
+      }
+      .bubble-container {
+        position: relative;
+        background: transparent !important;
+        box-shadow: var(--bubble-box-shadow);
+      }
+      .bubble-background {
+        background: transparent !important;
+        transition: none;
+      }
+      .bubble-container::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: inherit;
+        pointer-events: none;
+        background: var(--ha-card-glass-tint);
+        box-shadow: var(--ha-card-glass-inset-shadow);
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+      .bubble-container::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: inherit;
+        pointer-events: none;
+        background-image: var(--acrylic-noise);
+        background-size: 128px 128px;
+        opacity: 0.055;
+        mix-blend-mode: overlay;
+      }
+
+      /* Transparent Hue surfaces need the theme's matching foreground. */
+      :host(hue-like-light-card) ha-card,
+      :host(.type-custom-hue-like-light-card) ha-card {
+        --hue-text-color: var(--primary-text-color);
+        background: transparent !important;
+        color: var(--primary-text-color) !important;
+      }
+
+      /* Navbar resolves its native background against card-background-color.
+         Scope the transparent base here; menus elsewhere keep their opaque base.
+         Public --navbar-background-color overrides remain owned by the card/user. */
+      :host(navbar-card),
+      :host(.type-custom-navbar-card) {
+        --card-background-color: var(--ha-card-background, transparent);
+        --material-shadow-elevation-2dp: var(--ha-card-box-shadow);
+      }
+      .navbar ha-card,
+      :host(navbar-card) ha-card,
+      :host(.type-custom-navbar-card) ha-card {
+        --frosted-glass-card-layer-content: none;
+        box-shadow: var(--navbar-box-shadow-desktop, var(--ha-card-box-shadow));
+        background: var(--navbar-background-color, transparent);
+        backdrop-filter: var(--navbar-backdrop-filter);
+        -webkit-backdrop-filter: var(--navbar-backdrop-filter);
+        border: var(--ha-card-border);
+      }
+      :host(navbar-card) ha-card::after,
+      :host(.type-custom-navbar-card) ha-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        border-radius: inherit;
+        background-image: var(--acrylic-noise);
+        background-size: 128px 128px;
+        opacity: 0.055;
+        mix-blend-mode: overlay;
+      }
+      :host(navbar-card) .popup-item .button {
+        background: var(--ha-card-glass-tint);
+        backdrop-filter: var(--navbar-backdrop-filter);
+        -webkit-backdrop-filter: var(--navbar-backdrop-filter);
+        border: var(--ha-card-border);
+      }
+
+      :host(:where(slider-button-card, .type-custom-slider-button-card)) {
+        --btn-bg-color-off: var(--frosted-glass-slider-button-off);
+        --btn-bg-color-on: var(--frosted-glass-slider-button-on);
+        --slider-track-color: var(--frosted-glass-slider-track);
+      }
+
+      /* Room Summary already paints its own corner reflections. */
+      :where(:host(room-summary-card)) ha-card {
+        --ha-card-box-shadow: var(--frosted-glass-card-depth-shadow);
+      }
+
+      /* Leave both pseudo-elements available for Mushroom template artwork. */
+      :host(mushroom-template-card) ha-card {
+        background: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+
+      /* stack-in-card writes this inline only when keep.background is false and
+         --keep-background is not true. Honor that decision instead of hiding every
+         descendant, including those whose background was explicitly kept. */
+      ha-card[style*="background: transparent"] {
+        --ha-card-backdrop-filter: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+      }
+      ha-card[style*="background: transparent"]::before,
+      ha-card[style*="background: transparent"]::after {
+        content: none !important;
+      }
+
+      .mdc-data-table {
+        background: none !important;
+      }
+      .mdc-data-table__header-cell {
+        background: var(--frosted-glass-control-surface);
+      }
+
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-generic-picker$": &acrylic-menu |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface,
+      wa-popover::part(body) {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-control-select-menu$": *acrylic-menu
+    "ha-select$":
+      .: *acrylic-menu
+      "ha-dropdown$": &acrylic-menu-inner |
+        #menu {
+          background: var(--ha-card-glass-tint) !important;
+          background-color: var(--ha-card-glass-tint) !important;
+          backdrop-filter: var(--ha-card-backdrop-filter) !important;
+          -webkit-backdrop-filter: var(--ha-card-backdrop-filter) !important;
+        }
+    "ha-base-time-input$": *acrylic-menu
+    "ha-date-range-picker$": *acrylic-menu
+    "hui-card-features$":
+      "hui-card-feature$":
+        "hui-climate-fan-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-climate-hvac-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-climate-preset-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-climate-swing-horizontal-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-climate-swing-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-fan-preset-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-humidifier-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-light-effect-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-media-player-sound-mode-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-media-player-source-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-select-options-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-vacuum-fan-speed-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-water-heater-operation-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+  card-mod-dialog-yaml: |
+    .: |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-generic-picker$": &acrylic-menu |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface,
+      wa-popover::part(body) {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-control-select-menu$": *acrylic-menu
+    "ha-select$":
+      .: *acrylic-menu
+      "ha-dropdown$": &acrylic-menu-inner |
+        #menu {
+          background: var(--ha-card-glass-tint) !important;
+          background-color: var(--ha-card-glass-tint) !important;
+          backdrop-filter: var(--ha-card-backdrop-filter) !important;
+          -webkit-backdrop-filter: var(--ha-card-backdrop-filter) !important;
+        }
+    "ha-base-time-input$": *acrylic-menu
+    "ha-date-range-picker$": *acrylic-menu
+    "ha-form$": &acrylic-form
+      "ha-selector$":
+        "ha-selector-select$":
+          "ha-select$":
+            .: *acrylic-menu
+            "ha-dropdown$": *acrylic-menu-inner
+      "ha-form-expandable$":
+        "ha-form$":
+          "ha-selector$":
+            "ha-selector-select$":
+              "ha-select$":
+                .: *acrylic-menu
+                "ha-dropdown$": *acrylic-menu-inner
+      "ha-form-grid$":
+        "ha-form$":
+          "ha-selector$":
+            "ha-selector-select$":
+              "ha-select$":
+                .: *acrylic-menu
+                "ha-dropdown$": *acrylic-menu-inner
+          "ha-form-expandable$":
+            "ha-form$":
+              "ha-selector$":
+                "ha-selector-select$":
+                  "ha-select$":
+                    .: *acrylic-menu
+                    "ha-dropdown$": *acrylic-menu-inner
+    "hui-view-background-editor$":
+      "ha-form$": *acrylic-form
+    "hui-view-background-editor$ $$ ha-dropdown$": *acrylic-menu-inner
+    "ha-form$ $$ ha-dropdown$": *acrylic-menu-inner
+  card-mod-more-info-yaml: |
+    .: |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-generic-picker$": &acrylic-menu |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface,
+      wa-popover::part(body) {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-control-select-menu$": *acrylic-menu
+    "ha-select$":
+      .: *acrylic-menu
+      "ha-dropdown$": &acrylic-menu-inner |
+        #menu {
+          background: var(--ha-card-glass-tint) !important;
+          background-color: var(--ha-card-glass-tint) !important;
+          backdrop-filter: var(--ha-card-backdrop-filter) !important;
+          -webkit-backdrop-filter: var(--ha-card-backdrop-filter) !important;
+        }
+    "ha-base-time-input$": *acrylic-menu
+    "ha-date-range-picker$": *acrylic-menu
+    "ha-form$": &acrylic-form
+      "ha-selector$":
+        "ha-selector-select$":
+          "ha-select$":
+            .: *acrylic-menu
+            "ha-dropdown$": *acrylic-menu-inner
+      "ha-form-expandable$":
+        "ha-form$":
+          "ha-selector$":
+            "ha-selector-select$":
+              "ha-select$":
+                .: *acrylic-menu
+                "ha-dropdown$": *acrylic-menu-inner
+      "ha-form-grid$":
+        "ha-form$":
+          "ha-selector$":
+            "ha-selector-select$":
+              "ha-select$":
+                .: *acrylic-menu
+                "ha-dropdown$": *acrylic-menu-inner
+          "ha-form-expandable$":
+            "ha-form$":
+              "ha-selector$":
+                "ha-selector-select$":
+                  "ha-select$":
+                    .: *acrylic-menu
+                    "ha-dropdown$": *acrylic-menu-inner
+    "hui-view-background-editor$":
+      "ha-form$": *acrylic-form
+    "hui-view-background-editor$ $$ ha-dropdown$": *acrylic-menu-inner
+    "ha-form$ $$ ha-dropdown$": *acrylic-menu-inner
+  card-mod-view-yaml: |
+    .: |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-generic-picker$": &acrylic-menu |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface,
+      wa-popover::part(body) {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-control-select-menu$": *acrylic-menu
+    "ha-select$":
+      .: *acrylic-menu
+      "ha-dropdown$": &acrylic-menu-inner |
+        #menu {
+          background: var(--ha-card-glass-tint) !important;
+          background-color: var(--ha-card-glass-tint) !important;
+          backdrop-filter: var(--ha-card-backdrop-filter) !important;
+          -webkit-backdrop-filter: var(--ha-card-backdrop-filter) !important;
+        }
+    "ha-base-time-input$": *acrylic-menu
+    "ha-date-range-picker$": *acrylic-menu
+  # Global glass tokens are inherited by dialogs, sidebar and custom cards.
+  ha-card-backdrop-filter: 'blur(40px) saturate(200%) contrast(1.08)'
+  ha-card-glass-tint: 'rgba(28, 28, 30, 0.55)'
+  ha-card-glass-inset-shadow: 'inset 0 0.5px 0 rgba(255, 255, 255, 0.14)'
+  frosted-glass-menu-surface: 'rgb(44, 44, 44)'
+  frosted-glass-control-surface: 'rgba(28, 28, 30, 0.82)'
+  frosted-glass-badge-shadow: 'var(--ha-card-glass-inset-shadow), 0 2px 4px rgba(0, 0, 0, 0.12), 0 12px 28px rgba(0, 0, 0, 0.28), 0 32px 80px rgba(0, 0, 0, 0.38)'
+  frosted-glass-slider-button-off: 'var(--btn-bg-color-off)'
+  frosted-glass-slider-button-on: 'var(--btn-bg-color-on)'
+  frosted-glass-slider-track: 'var(--slider-track-color)'
+
+  card-mod-badge: |
+    ha-badge,
+    .badge {
+      --ha-card-box-shadow: var(--frosted-glass-badge-shadow);
+    }
+
+  card-mod-sidebar: |
+    :host {
+      position: relative;
+      isolation: isolate;
+      background: transparent;
+    }
+    :host::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: var(--sidebar-background-color);
+      backdrop-filter: var(--sidebar-backdrop-filter, none);
+      -webkit-backdrop-filter: var(--sidebar-backdrop-filter, none);
+      box-shadow: inset -1px 0 0 var(--sidebar-border-color);
+    }
+    :host::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image: var(--acrylic-noise);
+      background-size: 128px 128px;
+      opacity: 0.055;
+      mix-blend-mode: overlay;
+    }
+    .menu {
+      background: transparent;
+    }
+
+  card-mod-drawer: |
+    /* Put the same wallpaper behind the sidebar's glass, including on
+       configuration panels. A pseudo-element on the sidebar owns its blur. */
+    .sidebar-shell,
+    .mdc-drawer {
+      background: var(--lovelace-background, var(--background-image));
+      border-inline-end: 1px solid var(--sidebar-border-color);
+    }
+    .mdc-drawer__content {
+      background: transparent;
+    }
+    wa-drawer::part(dialog) {
+      background: var(--lovelace-background, var(--background-image));
+      border-inline-end: 1px solid var(--sidebar-border-color);
+    }
+    :host {
+      --mdc-drawer-scrim-color: var(--mdc-dialog-scrim-color);
+    }
+
+  # =========================
+  # CARD-MOD-ROOT GLOBAL CSS
+  # =========================
+  card-mod-root: |
+    :host {
+
+      /* Glass system tokens (new, dark-tuned) */
+
+      /* Tokens - match structure to Light theme for consistency */
+      --token-rgb-primary: 128, 109, 241;
+      --token-rgb-black: 0, 0, 0;
+      --token-rgb-white: 239, 242, 246;
+      --token-rgb-purple: 129, 45, 250;
+      --token-rgb-pink: 204, 0, 136;
+      --token-rgb-red: 204, 0, 51;
+      --token-rgb-deep-purple: 98, 0, 234;
+      --token-rgb-indigo: 48, 63, 159;
+      --token-rgb-blue: 33, 150, 243;
+      --token-rgb-light-blue: 3, 169, 244;
+      --token-rgb-cyan: 0, 172, 193;
+      --token-rgb-teal: 0, 137, 123;
+      --token-rgb-green: 56, 142, 60;
+      --token-rgb-light-green: 139, 195, 74;
+      --token-rgb-lime: 205, 220, 57;
+      --token-rgb-yellow: 250, 183, 0;
+      --token-rgb-amber: 255, 193, 7;
+      --token-rgb-orange: 255, 158, 0;
+      --token-rgb-deep-orange: 255, 87, 34;
+      --token-rgb-brown: 121, 85, 72;
+      --token-rgb-grey: 178, 184, 193;
+      --token-rgb-blue-grey: 96, 125, 139;
+      --token-rgb-disabled: 125, 128, 134;
+      --token-rgb-state-inactive: 178, 184, 193;
+
+      --token-color-primary: rgb(var(--token-rgb-primary));
+      --token-color-primary-light: rgb(177, 173, 251);
+      --token-color-accent: rgb(var(--token-rgb-teal));
+      --token-color-disabled: rgb(125, 128, 134);
+      --token-color-feedback-info: rgb(71, 109, 195);
+      --token-color-feedback-warning: rgb(228, 172, 89);
+      --token-color-feedback-error: rgb(215, 62, 63);
+      --token-color-feedback-success: rgb(67, 194, 81);
+      --token-color-icon-primary: rgb(239, 242, 246);
+      --token-color-icon-secondary: rgb(178, 184, 193);
+      --token-color-icon-sidebar: rgb(178, 184, 193);
+      --token-color-icon-sidebar-selected: var(--token-color-icon-primary);
+      --token-color-text-primary: rgb(239, 242, 246);
+      --token-color-text-secondary: rgb(178, 184, 193);
+      --token-color-text-disabled: rgb(125, 128, 134);
+      --token-color-text-sidebar-selected: var(--token-color-text-primary);
+      --token-color-text-sidebar: var(--token-color-text-secondary);
+      --token-color-text-label-badge: rgb(239, 242, 246);
+      --token-color-text-chip: rgb(var(--token-rgb-white));
+      --token-color-background-base: rgb(44, 44, 44);
+      --token-color-background-secondary: rgba(28, 28, 30, 0.55);
+      --token-color-background-sidebar: var(--sidebar-background-color);
+      --token-color-background-input-base: rgba(255, 255, 255, 0.06);
+      --token-color-background-input-disabled: rgba(255, 255, 255, 0.04);
+      --token-color-background-label-badge: rgba(28, 28, 30, 0.82);
+      --token-color-background-card: var(--ha-card-glass-tint);
+      --token-color-background-skrim: rgba(0, 0, 0, 0.32);
+      --token-color-background-divider: rgba(255, 255, 255, 0.08);
+      --token-color-background-scrollbar-thumb: rgba(255, 255, 255, 0.28);
+      --token-color-background-label-badge-red: var(--token-color-feedback-error);
+      --token-color-background-label-badge-blue: var(--token-color-feedback-info);
+      --token-color-background-label-badge-green: rgb(67, 194, 81);
+      --token-color-background-label-badge-yellow: var(--token-color-feedback-warning);
+      --token-color-background-label-badge-grey: rgb(178, 184, 193);
+      --token-color-background-popup-scrim: rgba(0, 0, 0, 0.32);
+      --token-color-border-card: rgba(255, 255, 255, 0.08);
+      --token-color-switch-button-unchecked: rgb(255, 255, 255);
+      --token-color-switch-track-unchecked: rgba(255, 255, 255, 0.18);
+      --token-color-codemirror-string: rgb(164, 209, 255);
+      --token-color-codemirror-keyword: rgb(148, 182, 255);
+      --token-color-codemirror-number: rgb(255, 171, 64);
+      --token-shadow-card-medium: 0 2px 4px rgba(0, 0, 0, 0.12), 0 12px 28px rgba(0, 0, 0, 0.28), 0 32px 80px rgba(0, 0, 0, 0.38);
+      --token-size-radius-small: 4px;
+      --token-size-radius-medium: 8px;
+      --token-size-radius-large: 8px;
+      --token-size-radius-card: var(--token-size-radius-large);
+      --token-size-width-border-card: 1px;
+      --token-size-height-slider: 5px;
+      --token-size-height-navbar: 60px;
+      --token-size-font-xs: calc(10px * var(--ha-font-size-scale));
+      --token-size-font-s: calc(12px * var(--ha-font-size-scale));
+      --token-size-font-m: calc(14px * var(--ha-font-size-scale));
+      --token-size-font-l: calc(15px * var(--ha-font-size-scale));
+      --token-size-font-xl: calc(20px * var(--ha-font-size-scale));
+      --token-size-font-2xl: calc(25px * var(--ha-font-size-scale));
+      --token-size-font-3xl: calc(29px * var(--ha-font-size-scale));
+      --token-size-font-4xl: calc(33px * var(--ha-font-size-scale));
+      --token-size-font-5xl: calc(42px * var(--ha-font-size-scale));
+      --token-size-spacing-medium: 17px;
+      --token-size-section-min-width: 320px;
+      --token-color-transparent: rgba(0, 0, 0, 0);
+      --token-color-black: rgb(0, 0, 0);
+      --token-color-white: rgb(239, 242, 246);
+      --token-opacity-ripple-hover: 0.1;
+      --token-font-family-primary: Geist, "Geist Variable", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      --token-weight-font-title-card: 500;
+
+      /* Additional color variables. */
+      --token-color-red: rgb(var(--token-rgb-red));
+      --token-color-green: rgb(var(--token-rgb-green));
+      --token-color-blue: rgb(var(--token-rgb-blue));
+      --token-color-yellow: rgb(var(--token-rgb-yellow));
+      --token-color-orange: rgb(var(--token-rgb-orange));
+      --token-color-purple: rgb(var(--token-rgb-purple));
+      --token-color-pink: rgb(var(--token-rgb-pink));
+      --token-color-amber: rgb(var(--token-rgb-amber));
+      --token-color-cyan: rgb(var(--token-rgb-cyan));
+      --token-color-teal: rgb(var(--token-rgb-teal));
+      --token-color-lime: rgb(var(--token-rgb-lime));
+      --token-color-light-green: rgb(var(--token-rgb-light-green));
+      --token-color-deep-orange: rgb(var(--token-rgb-deep-orange));
+      --token-color-brown: rgb(var(--token-rgb-brown));
+      --token-color-grey: rgb(var(--token-rgb-grey));
+      --token-color-blue-grey: rgb(var(--token-rgb-blue-grey));
+      --token-color-indigo: rgb(var(--token-rgb-indigo));
+      --token-color-deep-purple: rgb(var(--token-rgb-deep-purple));
+      --token-color-light-blue: rgb(var(--token-rgb-light-blue));
+    }
+
+    ha-dropdown::part(menu),
+    ha-dropdown-item::part(submenu),
+    .mdc-menu-surface {
+      background: var(--ha-card-glass-tint) !important;
+      background-color: var(--ha-card-glass-tint) !important;
+      backdrop-filter: var(--ha-card-backdrop-filter);
+      -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+    }
+
+  # =========================
+  # TYPOGRAPHY
+  # =========================
+  ha-font-family-body: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  ha-font-family-heading: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  ha-font-family-code: "'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+  ha-font-family-longform: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  ha-card-header-font-family: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  mdc-typography-font-family: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  mdc-typography-button-font-family: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  mdc-typography-body1-font-family: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  md-list-item-label-text-font: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  paper-font-common-base_-_font-family: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  paper-font-common-code_-_font-family: 'var(--ha-font-family-code)'
+  paper-font-body1_-_font-family: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  paper-font-subhead_-_font-family: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  paper-font-headline_-_font-family: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  paper-font-caption_-_font-family: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  paper-font-title_-_font-family: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+
+  ha-font-weight-normal: '400'
+  ha-font-weight-medium: '500'
+  ha-font-weight-bold: '700'
+  ha-font-weight-body: '400'
+  ha-font-weight-heading: '500'
+  ha-font-weight-action: '500'
+  mdc-typography-button-font-weight: '500'
+  title-font-weight: '500'
+
+  ha-font-size-xs: '10px'
+  ha-font-size-s: '12px'
+  ha-font-size-m: '14px'
+  ha-font-size-l: '15px'
+  ha-font-size-xl: '20px'
+  ha-font-size-2xl: '25px'
+  ha-font-size-3xl: '29px'
+  ha-font-size-4xl: '33px'
+  ha-font-size-5xl: '42px'
+  title-font-size: '20px'
+  ha-heading-card-title-font-size: 'var(--ha-font-size-l)'
+  ha-heading-card-title-font-weight: '500'
+  ha-font-smoothing: 'antialiased'
+
+  # =========================
+  # COLORS & MISCELLANEOUS
+  # =========================
+  # 1.2.1 - change add HA 2025.8 primary color scale aligned to theme
+  ha-color-primary-05: '#0C0B19'
+  ha-color-primary-10: '#191630'
+  ha-color-primary-20: '#30295E'
+  ha-color-primary-30: '#493E8F'
+  ha-color-primary-40: '#6455BF'
+  ha-color-primary-50: '#806DF1'
+  ha-color-primary-60: '#988EF7'
+  ha-color-primary-70: '#B1ADFB'
+  ha-color-primary-80: '#C6C5F7'
+  ha-color-primary-90: '#DBDBF8'
+  ha-color-primary-95: '#EDEDFC'
+
+  # 1.2.1 - change add aliases for compatibility (some threads reference --color-primary-xx)
+  color-primary-05: '#0C0B19'
+  color-primary-10: '#191630'
+  color-primary-20: '#30295E'
+  color-primary-30: '#493E8F'
+  color-primary-40: '#6455BF'
+  color-primary-50: '#806DF1'
+  color-primary-60: '#988EF7'
+  color-primary-70: '#B1ADFB'
+  color-primary-80: '#C6C5F7'
+  color-primary-90: '#DBDBF8'
+  color-primary-95: '#EDEDFC'
+  primary-text-color: 'rgb(239, 242, 246)'
+  secondary-text-color: 'rgb(178, 184, 193)'
+  text-primary-color: 'rgb(239, 242, 246)'
+  disabled-text-color: 'rgb(125, 128, 134)'
+  text-light-primary-color: 'rgb(239, 242, 246)'
+  paper-item-icon-color: 'rgb(239, 242, 246)'
+  state-inactive-color: 'rgb(178, 184, 193)'
+  state-icon-color: 'rgb(239, 242, 246)'
+  state-on-color: 'rgb(67, 194, 81)'
+  state-off-color: 'rgb(215, 62, 63)'
+  label-badge-text-color: 'rgb(239, 242, 246)'
+  label-badge-red: 'rgb(215, 62, 63)'
+  label-badge-blue: 'rgb(71, 109, 195)'
+  label-badge-green: 'rgb(67, 194, 81)'
+  label-badge-yellow: 'rgb(228, 172, 89)'
+  label-badge-grey: 'rgb(178, 184, 193)'
+  ha-chip-text-color: 'rgb(239, 242, 246)'
+
+  primary-color: 'rgb(128, 109, 241)'
+  dark-primary-color: 'rgb(100, 85, 191)'
+  light-primary-color: 'rgb(177, 173, 251)'
+  accent-color: 'rgb(128, 109, 241)'
+  divider-color: 'rgba(255, 255, 255, 0.08)'
+  scrollbar-thumb-color: 'rgba(255, 255, 255, 0.28)'
+  disabled-color: 'rgb(125, 128, 134)'
+  info-color: 'rgb(71, 109, 195)'
+  success-color: 'rgb(67, 194, 81)'
+  warning-color: 'rgb(228, 172, 89)'
+  error-color: 'rgb(215, 62, 63)'
+  background-image: 'fixed radial-gradient(ellipse at 0% 0%, rgba(68, 63, 118, 0.45) 0%, transparent 48%), fixed radial-gradient(ellipse at 100% 8%, rgba(45, 96, 111, 0.28) 0%, transparent 42%), fixed linear-gradient(165deg, #13151F, #05070D)'
+  lovelace-background: 'fixed radial-gradient(ellipse at 0% 0%, rgba(68, 63, 118, 0.45) 0%, transparent 48%), fixed radial-gradient(ellipse at 100% 8%, rgba(45, 96, 111, 0.28) 0%, transparent 42%), fixed linear-gradient(165deg, #13151F, #05070D)'
+  primary-background-color: 'rgb(5, 7, 13)'
+  secondary-background-color: 'rgba(28, 28, 30, 0.55)'
+  clear-background-color: 'rgba(28, 28, 30, 0.82)'
+  card-background-color: 'var(--ha-card-glass-tint)'
+  ha-card-background: 'var(--ha-card-glass-tint)'
+  ha-card-border-radius: '8px'
+  ha-card-border-color: 'rgba(255, 255, 255, 0.08)'
+  ha-card-border-width: '1px'
+  ha-card-border-style: 'solid'
+  ha-card-border: 'var(--ha-card-border-width) solid var(--ha-card-border-color)'
+  frosted-glass-card-depth-shadow: '0 2px 4px rgba(0, 0, 0, 0.12), 0 12px 28px rgba(0, 0, 0, 0.28), 0 32px 80px rgba(0, 0, 0, 0.38)'
+  ha-card-box-shadow: 'var(--ha-card-glass-inset-shadow), var(--frosted-glass-card-depth-shadow)'
+  frosted-glass-contrast: '1.08'
+  ha-view-sections-column-gap: '17px'
+  ha-view-sections-column-min-width: 320px
+
+  ha-dialog-scrim-backdrop-filter: 'none'
+  ha-bottom-sheet-surface-background: 'var(--ha-dialog-surface-background)'
+  ha-bottom-sheet-surface-backdrop-filter: 'var(--ha-dialog-surface-backdrop-filter)'
+  ha-bottom-sheet-scrim-backdrop-filter: 'none'
+  ha-bottom-sheet-scrim-color: 'var(--mdc-dialog-scrim-color)'
+
+  frosted-glass-popup-surface: 'rgba(28, 28, 30, 0.55)'
+
+  frosted-glass-popup-backdrop-filter: 'blur(40px) saturate(200%) contrast(1.08)'
+
+  frosted-glass-popup-scrim: 'rgba(0, 0, 0, 0.32)'
+
+  # Home Assistant 2026.8 form, shape and switch tokens
+  ha-color-form-background: 'rgba(255, 255, 255, 0.06)'
+  ha-color-form-background-hover: 'rgba(255, 255, 255, 0.10)'
+  ha-color-form-background-disabled: 'rgba(255, 255, 255, 0.04)'
+  mdc-text-field-fill-color: 'rgba(255, 255, 255, 0.06)'
+  mdc-select-fill-color: 'rgba(255, 255, 255, 0.06)'
+  ha-border-radius-square: '0px'
+  ha-border-radius-sm: '4px'
+  ha-border-radius-md: '8px'
+  ha-border-radius-lg: '8px'
+  ha-border-radius-xl: '8px'
+  ha-border-radius-2xl: '8px'
+  ha-border-radius-3xl: '8px'
+  ha-border-radius-4xl: '8px'
+  ha-border-radius-5xl: '8px'
+  ha-border-radius-6xl: '8px'
+  ha-border-radius-pill: '9999px'
+  ha-border-radius-circle: '50%'
+  ha-switch-size: '24px'
+  ha-switch-thumb-size: '18px'
+  ha-switch-width: '48px'
+  ha-switch-background-color: 'rgba(255, 255, 255, 0.18)'
+  ha-switch-background-color-hover: 'rgba(255, 255, 255, 0.26)'
+  ha-switch-thumb-background-color: 'rgb(255, 255, 255)'
+  ha-switch-thumb-background-color-hover: 'rgb(255, 255, 255)'
+  ha-switch-checked-background-color: 'rgb(128, 109, 241)'
+  ha-switch-checked-background-color-hover: 'rgb(177, 173, 251)'
+  ha-switch-checked-thumb-background-color: 'rgb(255, 255, 255)'
+  ha-switch-checked-thumb-background-color-hover: 'rgb(255, 255, 255)'
+  control-switch-border-radius: '9999px'
+  control-button-icon-color: 'rgb(255, 255, 255)'
+  control-button-background-color: 'rgb(128, 109, 241)'
+  control-button-background-opacity: '0.28'
+
+  # Sliders, toggles, switches
+  paper-slider-knob-color: 'rgb(128, 109, 241)'
+  paper-slider-knob-start-color: 'rgb(128, 109, 241)'
+  paper-slider-pin-color: 'rgb(128, 109, 241)'
+  paper-slider-active-color: 'rgb(128, 109, 241)'
+  paper-slider-secondary-color: 'rgb(177, 173, 251)'
+  switch-checked-button-color: 'rgb(255, 255, 255)'
+  switch-checked-track-color: 'rgb(128, 109, 241)'
+  switch-unchecked-button-color: 'rgb(255, 255, 255)'
+  switch-unchecked-track-color: 'rgba(255, 255, 255, 0.18)'
+  paper-toggle-button-checked-button-color: 'rgb(255, 255, 255)'
+  paper-toggle-button-checked-bar-color: 'rgb(128, 109, 241)'
+  paper-toggle-button-unchecked-button-color: 'rgb(255, 255, 255)'
+  paper-toggle-button-unchecked-bar-color: 'rgba(255, 255, 255, 0.18)'
+  mdc-checkbox-unchecked-color: 'rgb(178, 184, 193)'
+  mdc-radio-unchecked-color: 'rgb(178, 184, 193)'
+  mdc-ripple-hover-opacity: '0.1'
+
+  # Inputs
+  input-background-color: 'rgba(255, 255, 255, 0.06)'
+  input-background-token-color-disabled: 'rgba(255, 255, 255, 0.04)'
+  input-fill-color: 'rgba(255, 255, 255, 0.06)'
+  input-ink-color: 'rgb(239, 242, 246)'
+  input-label-ink-color: 'rgb(178, 184, 193)'
+  input-disabled-fill-color: 'rgba(255, 255, 255, 0.04)'
+  input-disabled-ink-color: 'rgb(125, 128, 134)'
+  input-disabled-label-ink-color: 'rgb(125, 128, 134)'
+  input-idle-line-color: 'transparent'
+  input-dropdown-icon-color: 'rgb(178, 184, 193)'
+  input-hover-line-color: 'rgb(128, 109, 241)'
+  mdc-select-idle-line-color: 'transparent'
+  mdc-text-field-idle-line-color: 'transparent'
+  mdc-theme-surface: 'var(--frosted-glass-menu-surface)'
+  md-menu-container-color: 'var(--frosted-glass-menu-surface)'
+  wa-color-surface-raised: 'var(--frosted-glass-menu-surface)'
+
+  # Code Editor & Misc
+  code-editor-background-color: 'rgb(44, 44, 44)'
+  codemirror-meta: 'rgb(239, 242, 246)'
+  codemirror-property: 'rgb(128, 109, 241)'
+  codemirror-atom: 'rgb(71, 109, 195)'
+  codemirror-string: 'rgb(164, 209, 255)'
+  codemirror-keyword: 'rgb(148, 182, 255)'
+  codemirror-number: 'rgb(255, 171, 64)'
+  mcg-title-font-weight: '400'
+  mush-title-font-weight: '500'
+  mush-title-font-size: 'var(--ha-font-size-2xl)'
+  light-grey-color: 'rgb(178, 184, 193)'
+  mush-rgb-grey: '178, 184, 193'
+
+  # Misc sizes
+  paper-slider-height: '5px'
+  border-radius: '8px'
+
+
+  # --- End of Theme ---
+
+  # A non-empty single-mode map is required by Home Assistant 2026.8+.
+  # Variables stay at the top level so card-mod and UIX can use this theme as an engine.
+  modes:
+    dark:
+      app-theme-color: 'rgb(5, 7, 13)'
+
+# Acrylic Light
+
+
+Acrylic Light:
+  card-mod-theme: 'Acrylic Light'
+  uix-theme: 'Acrylic Light'
+  acrylic-noise: "url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22256%22%20height%3D%22256%22%3E%3Cfilter%20id%3D%22n%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.8%22%20numOctaves%3D%224%22%20stitchTiles%3D%22stitch%22%20seed%3D%223%22%2F%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22256%22%20height%3D%22256%22%20filter%3D%22url%28%23n%29%22%2F%3E%3C%2Fsvg%3E')"
+  acrylic-fallback: '#F3F3F3'
+
+  # =========================
+  # HEADER (Top Bar)
+  # =========================
+  app-header-backdrop-filter: 'blur(40px) saturate(200%) contrast(1.08)'
+  app-header-background-color: 'rgba(243, 243, 245, 0.55)'
+  app-header-text-color: 'rgb(19, 25, 34)'
+  app-header-edit-background-color: 'var(--app-header-background-color)'
+  app-header-edit-text-color: 'rgb(19, 25, 34)'
+  app-theme-color: 'rgb(247, 248, 251)'
+
+  # =========================
+  # SIDEBAR / DRAWER
+  # =========================
+  sidebar-background-color: 'rgba(243, 243, 245, 0.55)'
+  sidebar-backdrop-filter: 'blur(40px) saturate(200%) contrast(1.08)'
+  sidebar-border-color: 'rgba(0, 0, 0, 0.08)'
+  sidebar-icon-color: 'rgb(60, 67, 77)'
+  sidebar-text-color: 'rgb(60, 67, 77)'
+  sidebar-selected-icon-color: 'rgb(19, 25, 34)'
+  sidebar-selected-text-color: 'rgb(19, 25, 34)'
+
+  # =========================
+  # DIALOGS
+  # =========================
+  # Native modern dialogs need no engine hook. The current-frontend tokens
+  # below are absent in HACS's legacy iframe, where CSS variable fallbacks keep
+  # the surface opaque and unfiltered so fixed-position dropdowns stay aligned.
+  ha-dialog-surface-backdrop-filter: 'var(--frosted-glass-popup-backdrop-filter) blur(calc(0 * var(--ha-space-1)))'
+  ha-dialog-surface-background: 'color-mix(in srgb, var(--frosted-glass-popup-surface), var(--ha-color-neutral-50) 0%)'
+  dialog-box-shadow: '0 2px 4px rgba(0, 0, 0, 0.06), 0 12px 28px rgba(0, 0, 0, 0.10), 0 32px 80px rgba(0, 0, 0, 0.14)'
+  paper-dialog-background-color: 'rgb(243, 243, 243)'
+  mdc-dialog-scrim-color: 'var(--frosted-glass-popup-scrim)'
+
+  # =========================
+  # THIRD-PARTY CARD CONTRACTS
+  # =========================
+  # Bubble Card: official global theme variables.
+  bubble-border-radius: '8px'
+  bubble-main-background-color: 'transparent'
+  bubble-secondary-background-color: 'rgba(0, 0, 0, 0.04)'
+  bubble-accent-color: 'rgb(85, 64, 176)'
+  bubble-icon-border-radius: '4px'
+  bubble-icon-background-color: 'rgba(0, 0, 0, 0.04)'
+  bubble-sub-button-border-radius: '4px'
+  bubble-sub-button-background-color: 'rgba(0, 0, 0, 0.04)'
+  bubble-box-shadow: 'var(--frosted-glass-card-depth-shadow)'
+  bubble-border: '1px solid rgba(0, 0, 0, 0.08)'
+  bubble-pop-up-border-radius: '8px'
+  bubble-pop-up-main-background-color: 'var(--frosted-glass-popup-surface)'
+  bubble-pop-up-background-color: 'var(--frosted-glass-popup-surface)'
+  bubble-backdrop-background-color: 'rgba(16, 24, 43, 0.18)'
+  bubble-select-list-border-radius: '8px'
+  bubble-select-list-background-color: 'var(--ha-card-glass-tint)'
+  bubble-select-list-item-accent-color: 'rgba(85, 64, 176, 0.24)'
+  bubble-horizontal-buttons-stack-border-radius: '8px'
+  bubble-horizontal-buttons-stack-background-color: 'transparent'
+
+  # Navbar Card: official variables plus a theme-owned filter consumed below.
+  navbar-background-color: 'rgba(243, 243, 245, 0.55)'
+  navbar-primary-color: 'rgb(85, 64, 176)'
+  navbar-border-radius: '8px'
+  navbar-box-shadow: 'var(--ha-card-box-shadow)'
+  navbar-box-shadow-desktop: 'var(--ha-card-box-shadow)'
+  navbar-box-shadow-mobile-floating: 'var(--ha-card-box-shadow)'
+  navbar-backdrop-filter: 'blur(40px) saturate(200%) contrast(1.08)'
+
+  # Simple Swipe Card and Slider Button Card public variables.
+  simple-swipe-card-pagination-background: 'transparent'
+  simple-swipe-card-pagination-dot-inactive-color: 'rgba(19, 25, 34, 0.34)'
+  simple-swipe-card-pagination-dot-active-color: 'rgb(85, 64, 176)'
+  simple-swipe-card-pagination-dot-active-box-shadow: '0 0 12px rgba(85, 64, 176, 0.34)'
+  btn-bg-color-off: 'rgba(0, 0, 0, 0.04)'
+  btn-bg-color-on: 'rgba(85, 64, 176, 0.22)'
+  slider-track-color: 'rgba(0, 0, 0, 0.16)'
+
+  # =========================
+  # CARDS / CARD-MOD
+  # =========================
+  card-mod-card-yaml: |
+    .: |
+      /* Blur lives on the card itself, same as the header. A ::before layer
+         paints over that blur and hides it. */
+      ha-card {
+        background: var(--ha-card-glass-tint);
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+        position: relative;
+      }
+
+      :where(:host(:not(mushroom-template-card):not(room-summary-card))) ha-card::before {
+        content: none;
+      }
+
+      /* Grain sits above the blur and under the card text.
+         ponytail: Arsenal also paints a 4% exclusion veil. That needs a third layer.
+         These cards already spend ::before on the blur. */
+      :where(:host(:not(mushroom-template-card):not(room-summary-card))) ha-card::after {
+        content: var(--frosted-glass-card-layer-content, '');
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        border-radius: inherit;
+        background-image: var(--acrylic-noise);
+        background-size: 128px 128px;
+        opacity: 0.055;
+        mix-blend-mode: overlay;
+      }
+
+      @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+        ha-card {
+          background: var(--acrylic-fallback);
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+        }
+      }
+
+      /* Containers and text-only cards leave their content's surface intact. */
+      :host(hui-heading-card) ha-card,
+      :host(.text-only) ha-card,
+      ha-card.text-only,
+      :host(mushroom-title-card) ha-card,
+      :host(mushroom-chips-card) ha-card {
+        --ha-card-background: transparent;
+        --ha-card-backdrop-filter: none;
+        --ha-card-box-shadow: none;
+        --frosted-glass-card-layer-content: none;
+        background: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+      :host(hui-heading-card) ha-card::before,
+      :host(.text-only) ha-card::before,
+      ha-card.text-only::before,
+      :host(mushroom-title-card) ha-card::before,
+      :host(mushroom-chips-card) ha-card::before,
+      :host(hui-heading-card) ha-card::after,
+      :host(.text-only) ha-card::after,
+      ha-card.text-only::after,
+      :host(mushroom-title-card) ha-card::after,
+      :host(mushroom-chips-card) ha-card::after {
+        content: none !important;
+      }
+
+      /* Bubble owns its rounded surface. Its blur layer cannot trap fixed menus. */
+      :host(bubble-card) ha-card,
+      :host(.type-custom-bubble-card) ha-card,
+      ha-card:has(.bubble-container) {
+        background: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border-radius: 0 !important;
+      }
+      :host(bubble-card) ha-card::before,
+      :host(.type-custom-bubble-card) ha-card::before,
+      ha-card:has(.bubble-container)::before,
+      :host(bubble-card) ha-card::after,
+      :host(.type-custom-bubble-card) ha-card::after,
+      ha-card:has(.bubble-container)::after {
+        content: none !important;
+      }
+      :where(:host(bubble-card), :host(.type-custom-bubble-card)) ha-card,
+      ha-card:where(:has(.bubble-container)) {
+        box-shadow: none;
+        border: none;
+      }
+      .bubble-container {
+        position: relative;
+        background: transparent !important;
+        box-shadow: var(--bubble-box-shadow);
+      }
+      .bubble-background {
+        background: transparent !important;
+        transition: none;
+      }
+      .bubble-container::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: inherit;
+        pointer-events: none;
+        background: var(--ha-card-glass-tint);
+        box-shadow: var(--ha-card-glass-inset-shadow);
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+      .bubble-container::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: inherit;
+        pointer-events: none;
+        background-image: var(--acrylic-noise);
+        background-size: 128px 128px;
+        opacity: 0.055;
+        mix-blend-mode: overlay;
+      }
+
+      /* Transparent Hue surfaces need the theme's matching foreground. */
+      :host(hue-like-light-card) ha-card,
+      :host(.type-custom-hue-like-light-card) ha-card {
+        --hue-text-color: var(--primary-text-color);
+        background: transparent !important;
+        color: var(--primary-text-color) !important;
+      }
+
+      /* Navbar resolves its native background against card-background-color.
+         Scope the transparent base here; menus elsewhere keep their opaque base.
+         Public --navbar-background-color overrides remain owned by the card/user. */
+      :host(navbar-card),
+      :host(.type-custom-navbar-card) {
+        --card-background-color: var(--ha-card-background, transparent);
+        --material-shadow-elevation-2dp: var(--ha-card-box-shadow);
+      }
+      .navbar ha-card,
+      :host(navbar-card) ha-card,
+      :host(.type-custom-navbar-card) ha-card {
+        --frosted-glass-card-layer-content: none;
+        box-shadow: var(--navbar-box-shadow-desktop, var(--ha-card-box-shadow));
+        background: var(--navbar-background-color, transparent);
+        backdrop-filter: var(--navbar-backdrop-filter);
+        -webkit-backdrop-filter: var(--navbar-backdrop-filter);
+        border: var(--ha-card-border);
+      }
+      :host(navbar-card) ha-card::after,
+      :host(.type-custom-navbar-card) ha-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        border-radius: inherit;
+        background-image: var(--acrylic-noise);
+        background-size: 128px 128px;
+        opacity: 0.055;
+        mix-blend-mode: overlay;
+      }
+      :host(navbar-card) .popup-item .button {
+        background: var(--ha-card-glass-tint);
+        backdrop-filter: var(--navbar-backdrop-filter);
+        -webkit-backdrop-filter: var(--navbar-backdrop-filter);
+        border: var(--ha-card-border);
+      }
+
+      :host(:where(slider-button-card, .type-custom-slider-button-card)) {
+        --btn-bg-color-off: var(--frosted-glass-slider-button-off);
+        --btn-bg-color-on: var(--frosted-glass-slider-button-on);
+        --slider-track-color: var(--frosted-glass-slider-track);
+      }
+
+      /* Room Summary already paints its own corner reflections. */
+      :where(:host(room-summary-card)) ha-card {
+        --ha-card-box-shadow: var(--frosted-glass-card-depth-shadow);
+      }
+
+      /* Leave both pseudo-elements available for Mushroom template artwork. */
+      :host(mushroom-template-card) ha-card {
+        background: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+
+      /* stack-in-card writes this inline only when keep.background is false and
+         --keep-background is not true. Honor that decision instead of hiding every
+         descendant, including those whose background was explicitly kept. */
+      ha-card[style*="background: transparent"] {
+        --ha-card-backdrop-filter: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+      }
+      ha-card[style*="background: transparent"]::before,
+      ha-card[style*="background: transparent"]::after {
+        content: none !important;
+      }
+
+      .mdc-data-table {
+        background: none !important;
+      }
+      .mdc-data-table__header-cell {
+        background: var(--frosted-glass-control-surface);
+      }
+
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-generic-picker$": &acrylic-menu |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface,
+      wa-popover::part(body) {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-control-select-menu$": *acrylic-menu
+    "ha-select$":
+      .: *acrylic-menu
+      "ha-dropdown$": &acrylic-menu-inner |
+        #menu {
+          background: var(--ha-card-glass-tint) !important;
+          background-color: var(--ha-card-glass-tint) !important;
+          backdrop-filter: var(--ha-card-backdrop-filter) !important;
+          -webkit-backdrop-filter: var(--ha-card-backdrop-filter) !important;
+        }
+    "ha-base-time-input$": *acrylic-menu
+    "ha-date-range-picker$": *acrylic-menu
+    "hui-card-features$":
+      "hui-card-feature$":
+        "hui-climate-fan-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-climate-hvac-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-climate-preset-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-climate-swing-horizontal-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-climate-swing-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-fan-preset-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-humidifier-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-light-effect-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-media-player-sound-mode-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-media-player-source-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-select-options-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-vacuum-fan-speed-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+        "hui-water-heater-operation-modes-card-feature$":
+          "ha-control-select-menu$": *acrylic-menu
+  card-mod-dialog-yaml: |
+    .: |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-generic-picker$": &acrylic-menu |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface,
+      wa-popover::part(body) {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-control-select-menu$": *acrylic-menu
+    "ha-select$":
+      .: *acrylic-menu
+      "ha-dropdown$": &acrylic-menu-inner |
+        #menu {
+          background: var(--ha-card-glass-tint) !important;
+          background-color: var(--ha-card-glass-tint) !important;
+          backdrop-filter: var(--ha-card-backdrop-filter) !important;
+          -webkit-backdrop-filter: var(--ha-card-backdrop-filter) !important;
+        }
+    "ha-base-time-input$": *acrylic-menu
+    "ha-date-range-picker$": *acrylic-menu
+    "ha-form$": &acrylic-form
+      "ha-selector$":
+        "ha-selector-select$":
+          "ha-select$":
+            .: *acrylic-menu
+            "ha-dropdown$": *acrylic-menu-inner
+      "ha-form-expandable$":
+        "ha-form$":
+          "ha-selector$":
+            "ha-selector-select$":
+              "ha-select$":
+                .: *acrylic-menu
+                "ha-dropdown$": *acrylic-menu-inner
+      "ha-form-grid$":
+        "ha-form$":
+          "ha-selector$":
+            "ha-selector-select$":
+              "ha-select$":
+                .: *acrylic-menu
+                "ha-dropdown$": *acrylic-menu-inner
+          "ha-form-expandable$":
+            "ha-form$":
+              "ha-selector$":
+                "ha-selector-select$":
+                  "ha-select$":
+                    .: *acrylic-menu
+                    "ha-dropdown$": *acrylic-menu-inner
+    "hui-view-background-editor$":
+      "ha-form$": *acrylic-form
+    "hui-view-background-editor$ $$ ha-dropdown$": *acrylic-menu-inner
+    "ha-form$ $$ ha-dropdown$": *acrylic-menu-inner
+  card-mod-more-info-yaml: |
+    .: |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-generic-picker$": &acrylic-menu |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface,
+      wa-popover::part(body) {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-control-select-menu$": *acrylic-menu
+    "ha-select$":
+      .: *acrylic-menu
+      "ha-dropdown$": &acrylic-menu-inner |
+        #menu {
+          background: var(--ha-card-glass-tint) !important;
+          background-color: var(--ha-card-glass-tint) !important;
+          backdrop-filter: var(--ha-card-backdrop-filter) !important;
+          -webkit-backdrop-filter: var(--ha-card-backdrop-filter) !important;
+        }
+    "ha-base-time-input$": *acrylic-menu
+    "ha-date-range-picker$": *acrylic-menu
+    "ha-form$": &acrylic-form
+      "ha-selector$":
+        "ha-selector-select$":
+          "ha-select$":
+            .: *acrylic-menu
+            "ha-dropdown$": *acrylic-menu-inner
+      "ha-form-expandable$":
+        "ha-form$":
+          "ha-selector$":
+            "ha-selector-select$":
+              "ha-select$":
+                .: *acrylic-menu
+                "ha-dropdown$": *acrylic-menu-inner
+      "ha-form-grid$":
+        "ha-form$":
+          "ha-selector$":
+            "ha-selector-select$":
+              "ha-select$":
+                .: *acrylic-menu
+                "ha-dropdown$": *acrylic-menu-inner
+          "ha-form-expandable$":
+            "ha-form$":
+              "ha-selector$":
+                "ha-selector-select$":
+                  "ha-select$":
+                    .: *acrylic-menu
+                    "ha-dropdown$": *acrylic-menu-inner
+    "hui-view-background-editor$":
+      "ha-form$": *acrylic-form
+    "hui-view-background-editor$ $$ ha-dropdown$": *acrylic-menu-inner
+    "ha-form$ $$ ha-dropdown$": *acrylic-menu-inner
+  card-mod-view-yaml: |
+    .: |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-generic-picker$": &acrylic-menu |
+      ha-dropdown::part(menu),
+      ha-dropdown-item::part(submenu),
+      .mdc-menu-surface,
+      wa-popover::part(body) {
+        background: var(--ha-card-glass-tint) !important;
+        background-color: var(--ha-card-glass-tint) !important;
+        backdrop-filter: var(--ha-card-backdrop-filter);
+        -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+      }
+    "ha-control-select-menu$": *acrylic-menu
+    "ha-select$":
+      .: *acrylic-menu
+      "ha-dropdown$": &acrylic-menu-inner |
+        #menu {
+          background: var(--ha-card-glass-tint) !important;
+          background-color: var(--ha-card-glass-tint) !important;
+          backdrop-filter: var(--ha-card-backdrop-filter) !important;
+          -webkit-backdrop-filter: var(--ha-card-backdrop-filter) !important;
+        }
+    "ha-base-time-input$": *acrylic-menu
+    "ha-date-range-picker$": *acrylic-menu
+  # Global glass tokens are inherited by dialogs, sidebar and custom cards.
+  ha-card-backdrop-filter: 'blur(40px) saturate(200%) contrast(1.08)'
+  ha-card-glass-tint: 'rgba(243, 243, 245, 0.55)'
+  ha-card-glass-inset-shadow: 'inset 0 0.5px 0 rgba(255, 255, 255, 0.65)'
+  frosted-glass-menu-surface: 'rgb(243, 243, 243)'
+  frosted-glass-control-surface: 'rgba(243, 243, 245, 0.88)'
+  frosted-glass-badge-shadow: 'var(--ha-card-glass-inset-shadow), 0 2px 4px rgba(0, 0, 0, 0.06), 0 12px 28px rgba(0, 0, 0, 0.10), 0 32px 80px rgba(0, 0, 0, 0.14)'
+  frosted-glass-slider-button-off: 'var(--btn-bg-color-off)'
+  frosted-glass-slider-button-on: 'var(--btn-bg-color-on)'
+  frosted-glass-slider-track: 'var(--slider-track-color)'
+
+  card-mod-badge: |
+    ha-badge,
+    .badge {
+      --ha-card-box-shadow: var(--frosted-glass-badge-shadow);
+    }
+
+  card-mod-sidebar: |
+    :host {
+      position: relative;
+      isolation: isolate;
+      background: transparent;
+    }
+    :host::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: var(--sidebar-background-color);
+      backdrop-filter: var(--sidebar-backdrop-filter, none);
+      -webkit-backdrop-filter: var(--sidebar-backdrop-filter, none);
+      box-shadow: inset -1px 0 0 var(--sidebar-border-color);
+    }
+    :host::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image: var(--acrylic-noise);
+      background-size: 128px 128px;
+      opacity: 0.055;
+      mix-blend-mode: overlay;
+    }
+    .menu {
+      background: transparent;
+    }
+
+  card-mod-drawer: |
+    /* Put the same wallpaper behind the sidebar's glass, including on
+       configuration panels. A pseudo-element on the sidebar owns its blur. */
+    .sidebar-shell,
+    .mdc-drawer {
+      background: var(--lovelace-background, var(--background-image));
+      border-inline-end: 1px solid var(--sidebar-border-color);
+    }
+    .mdc-drawer__content {
+      background: transparent;
+    }
+    wa-drawer::part(dialog) {
+      background: var(--lovelace-background, var(--background-image));
+      border-inline-end: 1px solid var(--sidebar-border-color);
+    }
+    :host {
+      --mdc-drawer-scrim-color: var(--mdc-dialog-scrim-color);
+    }
+
+  # =========================
+  # CARD-MOD-ROOT GLOBAL CSS
+  # =========================
+  card-mod-root: |
+    :host {
+
+
+      /* Tokens used throughout cards and UI. */
+      --token-rgb-primary: 85, 64, 176;
+      --token-rgb-black: 0, 0, 0;
+      --token-rgb-white: 255, 255, 255;
+      --token-rgb-purple: 129, 45, 250;
+      --token-rgb-pink: 204, 0, 136;
+      --token-rgb-red: 204, 0, 51;
+      --token-rgb-deep-purple: 98, 0, 234;
+      --token-rgb-indigo: 48, 63, 159;
+      --token-rgb-blue: 33, 150, 243;
+      --token-rgb-light-blue: 3, 169, 244;
+      --token-rgb-cyan: 0, 172, 193;
+      --token-rgb-teal: 0, 137, 123;
+      --token-rgb-green: 56, 142, 60;
+      --token-rgb-light-green: 139, 195, 74;
+      --token-rgb-lime: 205, 220, 57;
+      --token-rgb-yellow: 250, 183, 0;
+      --token-rgb-amber: 255, 193, 7;
+      --token-rgb-orange: 255, 158, 0;
+      --token-rgb-deep-orange: 255, 87, 34;
+      --token-rgb-brown: 121, 85, 72;
+      --token-rgb-grey: 60, 67, 77;
+      --token-rgb-blue-grey: 96, 125, 139;
+      --token-rgb-disabled: 109, 114, 121;
+      --token-rgb-state-inactive: 60, 67, 77;
+
+      --token-color-primary: rgb(var(--token-rgb-primary));
+      --token-color-primary-light: rgb(153, 149, 218);
+      --token-color-accent: rgb(var(--token-rgb-teal));
+      --token-color-disabled: rgb(109, 114, 121);
+      --token-color-feedback-info: rgb(39, 72, 147);
+      --token-color-feedback-warning: rgb(123, 77, 0);
+      --token-color-feedback-error: rgb(162, 25, 33);
+      --token-color-feedback-success: rgb(0, 88, 16);
+      --token-color-icon-primary: rgb(19, 25, 34);
+      --token-color-icon-secondary: rgb(60, 67, 77);
+      --token-color-icon-sidebar: rgb(60, 67, 77);
+      --token-color-icon-sidebar-selected: var(--token-color-icon-primary);
+      --token-color-text-primary: rgb(19, 25, 34);
+      --token-color-text-secondary: rgb(60, 67, 77);
+      --token-color-text-disabled: rgb(109, 114, 121);
+      --token-color-text-sidebar-selected: var(--token-color-text-primary);
+      --token-color-text-sidebar: var(--token-color-text-secondary);
+      --token-color-text-label-badge: rgb(19, 25, 34);
+      --token-color-text-chip: rgb(var(--token-rgb-black));
+      --token-color-background-base: rgb(243, 243, 243);
+      --token-color-background-secondary: rgba(243, 243, 245, 0.55);
+      --token-color-background-sidebar: var(--sidebar-background-color);
+      --token-color-background-input-base: rgba(255, 255, 255, 0.72);
+      --token-color-background-input-disabled: rgba(255, 255, 255, 0.40);
+      --token-color-background-label-badge: rgba(243, 243, 245, 0.88);
+      --token-color-background-card: var(--ha-card-glass-tint);
+      --token-color-background-skrim: rgba(16, 24, 43, 0.18);
+      --token-color-background-divider: rgba(0, 0, 0, 0.08);
+      --token-color-background-scrollbar-thumb: rgba(0, 0, 0, 0.28);
+      --token-color-background-label-badge-red: var(--token-color-feedback-error);
+      --token-color-background-label-badge-blue: var(--token-color-feedback-info);
+      --token-color-background-label-badge-green: rgb(0, 88, 16);
+      --token-color-background-label-badge-yellow: var(--token-color-feedback-warning);
+      --token-color-background-label-badge-grey: rgb(60, 67, 77);
+      --token-color-background-popup-scrim: rgba(16, 24, 43, 0.18);
+      --token-color-border-card: rgba(0, 0, 0, 0.08);
+      --token-color-switch-button-unchecked: rgb(255, 255, 255);
+      --token-color-switch-track-unchecked: rgba(0, 0, 0, 0.14);
+      --token-color-codemirror-string: rgb(0, 77, 153);
+      --token-color-codemirror-keyword: rgb(70, 112, 216);
+      --token-color-codemirror-number: rgb(204, 85, 0);
+      --token-shadow-card-medium: 0 2px 4px rgba(0, 0, 0, 0.06), 0 12px 28px rgba(0, 0, 0, 0.10), 0 32px 80px rgba(0, 0, 0, 0.14);
+      --token-size-radius-small: 4px;
+      --token-size-radius-medium: 8px;
+      --token-size-radius-large: 8px;
+      --token-size-radius-card: var(--token-size-radius-large);
+      --token-size-width-border-card: 1px;
+      --token-size-height-slider: 5px;
+      --token-size-height-navbar: 60px;
+      --token-size-font-xs: calc(10px * var(--ha-font-size-scale));
+      --token-size-font-s: calc(12px * var(--ha-font-size-scale));
+      --token-size-font-m: calc(14px * var(--ha-font-size-scale));
+      --token-size-font-l: calc(15px * var(--ha-font-size-scale));
+      --token-size-font-xl: calc(20px * var(--ha-font-size-scale));
+      --token-size-font-2xl: calc(25px * var(--ha-font-size-scale));
+      --token-size-font-3xl: calc(29px * var(--ha-font-size-scale));
+      --token-size-font-4xl: calc(33px * var(--ha-font-size-scale));
+      --token-size-font-5xl: calc(42px * var(--ha-font-size-scale));
+      --token-size-spacing-medium: 17px;
+      --token-size-section-min-width: 320px;
+      --token-color-transparent: rgba(0, 0, 0, 0);
+      --token-color-black: rgb(0, 0, 0);
+      --token-color-white: rgb(255, 255, 255);
+      --token-opacity-ripple-hover: 0.1;
+      --token-font-family-primary: Geist, "Geist Variable", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      --token-weight-font-title-card: 500;
+
+      /* Additional color variables. */
+      --token-color-red: rgb(var(--token-rgb-red));
+      --token-color-green: rgb(var(--token-rgb-green));
+      --token-color-blue: rgb(var(--token-rgb-blue));
+      --token-color-yellow: rgb(var(--token-rgb-yellow));
+      --token-color-orange: rgb(var(--token-rgb-orange));
+      --token-color-purple: rgb(var(--token-rgb-purple));
+      --token-color-pink: rgb(var(--token-rgb-pink));
+      --token-color-amber: rgb(var(--token-rgb-amber));
+      --token-color-cyan: rgb(var(--token-rgb-cyan));
+      --token-color-teal: rgb(var(--token-rgb-teal));
+      --token-color-lime: rgb(var(--token-rgb-lime));
+      --token-color-light-green: rgb(var(--token-rgb-light-green));
+      --token-color-deep-orange: rgb(var(--token-rgb-deep-orange));
+      --token-color-brown: rgb(var(--token-rgb-brown));
+      --token-color-grey: rgb(var(--token-rgb-grey));
+      --token-color-blue-grey: rgb(var(--token-rgb-blue-grey));
+      --token-color-indigo: rgb(var(--token-rgb-indigo));
+      --token-color-deep-purple: rgb(var(--token-rgb-deep-purple));
+      --token-color-light-blue: rgb(var(--token-rgb-light-blue));
+    }
+
+    ha-dropdown::part(menu),
+    ha-dropdown-item::part(submenu),
+    .mdc-menu-surface {
+      background: var(--ha-card-glass-tint) !important;
+      background-color: var(--ha-card-glass-tint) !important;
+      backdrop-filter: var(--ha-card-backdrop-filter);
+      -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
+    }
+
+  # =========================
+  # TYPOGRAPHY
+  # =========================
+  ha-font-family-body: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  ha-font-family-heading: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  ha-font-family-code: "'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+  ha-font-family-longform: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  ha-card-header-font-family: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  mdc-typography-font-family: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  mdc-typography-button-font-family: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  mdc-typography-body1-font-family: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  md-list-item-label-text-font: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  paper-font-common-base_-_font-family: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  paper-font-common-code_-_font-family: 'var(--ha-font-family-code)'
+  paper-font-body1_-_font-family: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  paper-font-subhead_-_font-family: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  paper-font-headline_-_font-family: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  paper-font-caption_-_font-family: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+  paper-font-title_-_font-family: "Geist, 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif"
+
+  ha-font-weight-normal: '400'
+  ha-font-weight-medium: '500'
+  ha-font-weight-bold: '700'
+  ha-font-weight-body: '400'
+  ha-font-weight-heading: '500'
+  ha-font-weight-action: '500'
+  mdc-typography-button-font-weight: '500'
+  title-font-weight: '500'
+
+  ha-font-size-xs: '10px'
+  ha-font-size-s: '12px'
+  ha-font-size-m: '14px'
+  ha-font-size-l: '15px'
+  ha-font-size-xl: '20px'
+  ha-font-size-2xl: '25px'
+  ha-font-size-3xl: '29px'
+  ha-font-size-4xl: '33px'
+  ha-font-size-5xl: '42px'
+  title-font-size: '20px'
+  ha-heading-card-title-font-size: 'var(--ha-font-size-l)'
+  ha-heading-card-title-font-weight: '500'
+  ha-font-smoothing: 'antialiased'
+
+  # =========================
+  # COLORS & MISCELLANEOUS
+  # =========================
+
+  # 1.2.1 - change add HA 2025.8 primary color scale aligned to theme
+  ha-color-primary-05: '#080715'
+  ha-color-primary-10: '#15122B'
+  ha-color-primary-20: '#271F52'
+  ha-color-primary-30: '#3B2C7D'
+  ha-color-primary-40: '#473696'
+  ha-color-primary-50: '#5540B0'
+  ha-color-primary-60: '#756BC8'
+  ha-color-primary-70: '#9995DA'
+  ha-color-primary-80: '#BAB9E3'
+  ha-color-primary-90: '#DCDCF2'
+  ha-color-primary-95: '#EDEDF8'
+
+  # 1.2.1 - change add aliases for compatibility (some threads reference --color-primary-xx)
+  color-primary-05: '#080715'
+  color-primary-10: '#15122B'
+  color-primary-20: '#271F52'
+  color-primary-30: '#3B2C7D'
+  color-primary-40: '#473696'
+  color-primary-50: '#5540B0'
+  color-primary-60: '#756BC8'
+  color-primary-70: '#9995DA'
+  color-primary-80: '#BAB9E3'
+  color-primary-90: '#DCDCF2'
+  color-primary-95: '#EDEDF8'
+  primary-text-color: 'rgb(19, 25, 34)'
+  secondary-text-color: 'rgb(60, 67, 77)'
+  text-primary-color: 'rgb(19, 25, 34)'
+  disabled-text-color: 'rgb(109, 114, 121)'
+  text-light-primary-color: 'rgb(19, 25, 34)'
+  paper-item-icon-color: 'rgb(19, 25, 34)'
+  state-inactive-color: 'rgb(60, 67, 77)'
+  state-icon-color: 'rgb(19, 25, 34)'
+  state-on-color: 'rgb(0, 88, 16)'
+  state-off-color: 'rgb(162, 25, 33)'
+  label-badge-text-color: 'rgb(19, 25, 34)'
+  label-badge-red: 'rgb(162, 25, 33)'
+  label-badge-blue: 'rgb(39, 72, 147)'
+  label-badge-green: 'rgb(0, 88, 16)'
+  label-badge-yellow: 'rgb(123, 77, 0)'
+  label-badge-grey: 'rgb(60, 67, 77)'
+  ha-chip-text-color: 'rgb(19, 25, 34)'
+
+  primary-color: 'rgb(85, 64, 176)'
+  dark-primary-color: 'rgb(71, 54, 150)'
+  light-primary-color: 'rgb(153, 149, 218)'
+  accent-color: 'rgb(85, 64, 176)'
+  divider-color: 'rgba(0, 0, 0, 0.08)'
+  scrollbar-thumb-color: 'rgba(0, 0, 0, 0.28)'
+  disabled-color: 'rgb(109, 114, 121)'
+  info-color: 'rgb(39, 72, 147)'
+  success-color: 'rgb(0, 88, 16)'
+  warning-color: 'rgb(123, 77, 0)'
+  error-color: 'rgb(162, 25, 33)'
+  background-image: 'fixed radial-gradient(ellipse at 0% 0%, rgba(178, 176, 233, 0.7) 0%, transparent 48%), fixed radial-gradient(ellipse at 100% 0%, rgba(194, 229, 241, 0.85) 0%, transparent 42%), fixed linear-gradient(165deg, #E4E7F6, #F7F8FB)'
+  lovelace-background: 'fixed radial-gradient(ellipse at 0% 0%, rgba(178, 176, 233, 0.7) 0%, transparent 48%), fixed radial-gradient(ellipse at 100% 0%, rgba(194, 229, 241, 0.85) 0%, transparent 42%), fixed linear-gradient(165deg, #E4E7F6, #F7F8FB)'
+  primary-background-color: 'rgb(247, 248, 251)'
+  secondary-background-color: 'rgba(243, 243, 245, 0.55)'
+  clear-background-color: 'rgba(243, 243, 245, 0.88)'
+  card-background-color: 'var(--ha-card-glass-tint)'
+  ha-card-background: 'var(--ha-card-glass-tint)'
+  ha-card-border-radius: '8px'
+  ha-card-border-color: 'rgba(0, 0, 0, 0.08)'
+  ha-card-border-width: '1px'
+  ha-card-border-style: 'solid'
+  ha-card-border: 'var(--ha-card-border-width) solid var(--ha-card-border-color)'
+  frosted-glass-card-depth-shadow: '0 2px 4px rgba(0, 0, 0, 0.06), 0 12px 28px rgba(0, 0, 0, 0.10), 0 32px 80px rgba(0, 0, 0, 0.14)'
+  ha-card-box-shadow: 'var(--ha-card-glass-inset-shadow), var(--frosted-glass-card-depth-shadow)'
+  frosted-glass-contrast: '1.08'
+  ha-view-sections-column-gap: '17px'
+  ha-view-sections-column-min-width: 320px
+
+  ha-dialog-scrim-backdrop-filter: 'none'
+  ha-bottom-sheet-surface-background: 'var(--ha-dialog-surface-background)'
+  ha-bottom-sheet-surface-backdrop-filter: 'var(--ha-dialog-surface-backdrop-filter)'
+  ha-bottom-sheet-scrim-backdrop-filter: 'none'
+  ha-bottom-sheet-scrim-color: 'var(--mdc-dialog-scrim-color)'
+
+  frosted-glass-popup-surface: 'rgba(243, 243, 245, 0.55)'
+
+  frosted-glass-popup-backdrop-filter: 'blur(40px) saturate(200%) contrast(1.08)'
+
+  frosted-glass-popup-scrim: 'rgba(16, 24, 43, 0.18)'
+
+  # Home Assistant 2026.8 form, shape and switch tokens
+  ha-color-form-background: 'rgba(255, 255, 255, 0.72)'
+  ha-color-form-background-hover: 'rgba(255, 255, 255, 0.86)'
+  ha-color-form-background-disabled: 'rgba(255, 255, 255, 0.40)'
+  mdc-text-field-fill-color: 'rgba(255, 255, 255, 0.72)'
+  mdc-select-fill-color: 'rgba(255, 255, 255, 0.72)'
+  ha-border-radius-square: '0px'
+  ha-border-radius-sm: '4px'
+  ha-border-radius-md: '8px'
+  ha-border-radius-lg: '8px'
+  ha-border-radius-xl: '8px'
+  ha-border-radius-2xl: '8px'
+  ha-border-radius-3xl: '8px'
+  ha-border-radius-4xl: '8px'
+  ha-border-radius-5xl: '8px'
+  ha-border-radius-6xl: '8px'
+  ha-border-radius-pill: '9999px'
+  ha-border-radius-circle: '50%'
+  ha-switch-size: '24px'
+  ha-switch-thumb-size: '18px'
+  ha-switch-width: '48px'
+  ha-switch-background-color: 'rgba(0, 0, 0, 0.14)'
+  ha-switch-background-color-hover: 'rgba(0, 0, 0, 0.20)'
+  ha-switch-thumb-background-color: 'rgb(255, 255, 255)'
+  ha-switch-thumb-background-color-hover: 'rgb(255, 255, 255)'
+  ha-switch-checked-background-color: 'rgb(85, 64, 176)'
+  ha-switch-checked-background-color-hover: 'rgb(153, 149, 218)'
+  ha-switch-checked-thumb-background-color: 'rgb(255, 255, 255)'
+  ha-switch-checked-thumb-background-color-hover: 'rgb(255, 255, 255)'
+  control-switch-border-radius: '9999px'
+  control-button-icon-color: 'rgb(255, 255, 255)'
+  control-button-background-color: 'rgb(85, 64, 176)'
+  control-button-background-opacity: '0.22'
+
+  # Sliders, toggles, switches
+  paper-slider-knob-color: 'rgb(85, 64, 176)'
+  paper-slider-knob-start-color: 'rgb(85, 64, 176)'
+  paper-slider-pin-color: 'rgb(85, 64, 176)'
+  paper-slider-active-color: 'rgb(85, 64, 176)'
+  paper-slider-secondary-color: 'rgb(153, 149, 218)'
+  switch-checked-button-color: 'rgb(255, 255, 255)'
+  switch-checked-track-color: 'rgb(85, 64, 176)'
+  switch-unchecked-button-color: 'rgb(255, 255, 255)'
+  switch-unchecked-track-color: 'rgba(0, 0, 0, 0.14)'
+  paper-toggle-button-checked-button-color: 'rgb(255, 255, 255)'
+  paper-toggle-button-checked-bar-color: 'rgb(85, 64, 176)'
+  paper-toggle-button-unchecked-button-color: 'rgb(255, 255, 255)'
+  paper-toggle-button-unchecked-bar-color: 'rgba(0, 0, 0, 0.14)'
+  mdc-checkbox-unchecked-color: 'rgb(60, 67, 77)'
+  mdc-radio-unchecked-color: 'rgb(60, 67, 77)'
+  mdc-ripple-hover-opacity: '0.1'
+
+  # Inputs
+  input-background-color: 'rgba(255, 255, 255, 0.72)'
+  input-background-token-color-disabled: 'rgba(255, 255, 255, 0.40)'
+  input-fill-color: 'rgba(255, 255, 255, 0.72)'
+  input-ink-color: 'rgb(19, 25, 34)'
+  input-label-ink-color: 'rgb(60, 67, 77)'
+  input-disabled-fill-color: 'rgba(255, 255, 255, 0.40)'
+  input-disabled-ink-color: 'rgb(109, 114, 121)'
+  input-disabled-label-ink-color: 'rgb(109, 114, 121)'
+  input-idle-line-color: 'transparent'
+  input-dropdown-icon-color: 'rgb(60, 67, 77)'
+  input-hover-line-color: 'rgb(85, 64, 176)'
+  mdc-select-idle-line-color: 'transparent'
+  mdc-text-field-idle-line-color: 'transparent'
+  mdc-theme-surface: 'var(--frosted-glass-menu-surface)'
+  md-menu-container-color: 'var(--frosted-glass-menu-surface)'
+  wa-color-surface-raised: 'var(--frosted-glass-menu-surface)'
+
+  # Code Editor & Misc
+  code-editor-background-color: 'rgb(243, 243, 243)'
+  codemirror-meta: 'rgb(19, 25, 34)'
+  codemirror-property: 'rgb(85, 64, 176)'
+  codemirror-atom: 'rgb(39, 72, 147)'
+  codemirror-string: 'rgb(0, 77, 153)'
+  codemirror-keyword: 'rgb(70, 112, 216)'
+  codemirror-number: 'rgb(204, 85, 0)'
+  mcg-title-font-weight: '400'
+  mush-title-font-weight: '500'
+  mush-title-font-size: 'var(--ha-font-size-2xl)'
+  light-grey-color: 'rgb(60, 67, 77)'
+  mush-rgb-grey: '60, 67, 77'
+
+  # Misc sizes
+  paper-slider-height: '5px'
+  border-radius: '8px'
+
+  # A non-empty single-mode map is required by Home Assistant 2026.8+.
+  # Variables stay at the top level so card-mod and UIX can use this theme as an engine.
+  modes:
+    light:
+      app-theme-color: 'rgb(247, 248, 251)'

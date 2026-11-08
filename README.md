@@ -9,7 +9,11 @@ Home Assistant theme. The glass behavior comes from [Frosted Glass](https://gith
 
 ## Install with HACS
 
-HACS has to be installed already. In HACS, open the three-dot menu and choose Custom repositories. Paste this repository's URL, set the category to Theme, and add it. Download Acrylic, then restart Home Assistant.
+HACS has to be installed already. The menu script is not part of a theme download. HACS only copies `themes/*.yaml` for a theme, and Home Assistant will not serve that folder to the browser.
+
+Add this repository as an Integration. If it is already added as a Theme, remove that custom repository first, then add the same URL with the category set to Integration. Download it and restart Home Assistant.
+
+Then open Settings, Devices & services, Add integration, and choose Acrylic. That serves the menu script and writes the theme file into `config/themes/`. Remove the Lovelace resource that pointed at `/local/acrylic-menus.js`. It 404s because that file is never installed.
 
 Open your profile and pick Acrylic Dark or Acrylic Light.
 
@@ -29,16 +33,6 @@ Install one of these, not both.
 
 Load it as a frontend module, using that project's own instructions. A dashboard resource only covers Lovelace, so the sidebar and settings panels stay unstyled. UIX understands the `card-mod-*-yaml` keys in this theme.
 
-Select menus such as Background size draw their panel inside `ha-dropdown`. That panel's background comes from the component's own stylesheet, so the theme variables never reach it. Copy `acrylic-menus.js` to `config/www/acrylic-menus.js` and add it next to your other frontend module:
-
-```yaml
-frontend:
-  extra_module_url:
-    - /local/acrylic-menus.js
-```
-
-Restart Home Assistant after adding that line, then refresh the browser.
-
 ## Without HACS
 
-Copy `themes/acrylic.yaml` to `config/themes/acrylic.yaml` on the Home Assistant machine. Reload themes, then pick the theme in your profile. The `frontend` block above still has to be set.
+Copy `themes/acrylic.yaml` to `config/themes/acrylic.yaml` on the Home Assistant machine. Copy `custom_components/acrylic` to `config/custom_components/acrylic`, restart, and add the Acrylic integration. Reload themes, then pick the theme in your profile. The `frontend` block above still has to be set.
