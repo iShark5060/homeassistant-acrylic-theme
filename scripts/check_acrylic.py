@@ -51,7 +51,7 @@ def main() -> None:
     need("deep dropdown search", text.count("$$ ha-dropdown$") == 8)
     need("card yaml kept", text.count("card-mod-card-yaml:") == 2)
     menus = MENUS.read_text(encoding="utf-8")
-    need("menu module", 'patch("ha-dropdown")' in menus and "#menu, #submenu" in menus)
+    need("menu module", "attachShadow" in menus and "#menu, #submenu" in menus)
     need("menu module blur", "var(--ha-card-backdrop-filter)" in menus)
     need("menu module has no brightness", "brightness(" not in menus)
     need("bundled theme matches", BUNDLED.read_bytes() == THEME.read_bytes())
