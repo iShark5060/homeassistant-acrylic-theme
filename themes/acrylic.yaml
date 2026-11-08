@@ -94,33 +94,17 @@ Acrylic Dark:
   # CARDS / CARD-MOD
   # =========================
   card-mod-card: |
-    /* Keep fixed-position menus in the viewport coordinate system. */
+    /* Blur lives on the card itself, same as the header. A ::before layer
+       paints over that blur and hides it. */
     ha-card {
-      background: transparent;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      position: relative;
-      isolation: isolate;
-    }
-
-    /* Depth stays on the card. The top highlight stays on the blur layer. */
-    :where(:host(:not(mushroom-template-card):not(navbar-card):not(.type-custom-navbar-card))) ha-card {
-      --ha-card-box-shadow: var(--frosted-glass-card-depth-shadow);
-    }
-
-    /* Low specificity lets per-card artwork override the glass layer. */
-    :where(:host(:not(mushroom-template-card):not(room-summary-card))) ha-card::before {
-      content: var(--frosted-glass-card-layer-content, '');
-      position: absolute;
-      inset: 0;
       background: var(--ha-card-glass-tint);
-      /* Top edge highlight. It lives on the blur layer so the filter cannot soften it. */
-      box-shadow: var(--ha-card-glass-inset-shadow);
       backdrop-filter: var(--ha-card-backdrop-filter);
       -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
-      z-index: -1;
-      pointer-events: none;
-      border-radius: inherit;
+      position: relative;
+    }
+
+    :where(:host(:not(mushroom-template-card):not(room-summary-card))) ha-card::before {
+      content: none;
     }
 
     /* Grain sits above the blur and under the card text.
@@ -140,7 +124,7 @@ Acrylic Dark:
     }
 
     @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-      :where(:host(:not(mushroom-template-card):not(room-summary-card))) ha-card::before {
+      ha-card {
         background: var(--acrylic-fallback);
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
@@ -613,8 +597,8 @@ Acrylic Dark:
   primary-background-color: 'rgb(5, 7, 13)'
   secondary-background-color: 'rgba(28, 28, 30, 0.55)'
   clear-background-color: 'rgba(28, 28, 30, 0.82)'
-  card-background-color: 'var(--frosted-glass-menu-surface)'
-  ha-card-background: 'transparent'
+  card-background-color: 'var(--ha-card-glass-tint)'
+  ha-card-background: 'var(--ha-card-glass-tint)'
   ha-card-border-radius: '8px'
   ha-card-border-color: 'rgba(255, 255, 255, 0.08)'
   ha-card-border-width: '1px'
@@ -823,33 +807,17 @@ Acrylic Light:
   # CARDS / CARD-MOD
   # =========================
   card-mod-card: |
-    /* Keep fixed-position menus in the viewport coordinate system. */
+    /* Blur lives on the card itself, same as the header. A ::before layer
+       paints over that blur and hides it. */
     ha-card {
-      background: transparent;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      position: relative;
-      isolation: isolate;
-    }
-
-    /* Depth stays on the card. The top highlight stays on the blur layer. */
-    :where(:host(:not(mushroom-template-card):not(navbar-card):not(.type-custom-navbar-card))) ha-card {
-      --ha-card-box-shadow: var(--frosted-glass-card-depth-shadow);
-    }
-
-    /* Low specificity lets per-card artwork override the glass layer. */
-    :where(:host(:not(mushroom-template-card):not(room-summary-card))) ha-card::before {
-      content: var(--frosted-glass-card-layer-content, '');
-      position: absolute;
-      inset: 0;
       background: var(--ha-card-glass-tint);
-      /* Top edge highlight. It lives on the blur layer so the filter cannot soften it. */
-      box-shadow: var(--ha-card-glass-inset-shadow);
       backdrop-filter: var(--ha-card-backdrop-filter);
       -webkit-backdrop-filter: var(--ha-card-backdrop-filter);
-      z-index: -1;
-      pointer-events: none;
-      border-radius: inherit;
+      position: relative;
+    }
+
+    :where(:host(:not(mushroom-template-card):not(room-summary-card))) ha-card::before {
+      content: none;
     }
 
     /* Grain sits above the blur and under the card text.
@@ -869,7 +837,7 @@ Acrylic Light:
     }
 
     @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-      :where(:host(:not(mushroom-template-card):not(room-summary-card))) ha-card::before {
+      ha-card {
         background: var(--acrylic-fallback);
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
@@ -1342,8 +1310,8 @@ Acrylic Light:
   primary-background-color: 'rgb(247, 248, 251)'
   secondary-background-color: 'rgba(243, 243, 245, 0.55)'
   clear-background-color: 'rgba(243, 243, 245, 0.88)'
-  card-background-color: 'var(--frosted-glass-menu-surface)'
-  ha-card-background: 'transparent'
+  card-background-color: 'var(--ha-card-glass-tint)'
+  ha-card-background: 'var(--ha-card-glass-tint)'
   ha-card-border-radius: '8px'
   ha-card-border-color: 'rgba(0, 0, 0, 0.08)'
   ha-card-border-width: '1px'
