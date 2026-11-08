@@ -43,7 +43,9 @@ def main() -> None:
     need("select menus", text.count('"ha-control-select-menu$"') >= 2)
     need("tile select features", text.count("hui-select-options-card-feature$") == 2)
     need("bubble select tint", text.count("bubble-select-list-background-color: 'var(--ha-card-glass-tint)'") == 2)
-    need("form select menus", text.count("hui-view-background-editor$") == 4)
+    need("form select menus", text.count('"hui-view-background-editor$"') == 4)
+    need("dropdown menu element", text.count("#menu {") == 8)
+    need("deep dropdown search", text.count("$$ ha-dropdown$") == 8)
     need("card yaml kept", text.count("card-mod-card-yaml:") == 2)
 
     noises = []
