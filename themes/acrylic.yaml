@@ -376,6 +376,27 @@ Acrylic Dark:
     "ha-select$": *acrylic-menu
     "ha-base-time-input$": *acrylic-menu
     "ha-date-range-picker$": *acrylic-menu
+    "ha-form$": &acrylic-form
+      "ha-selector$":
+        "ha-selector-select$":
+          "ha-select$": *acrylic-menu
+      "ha-form-expandable$":
+        "ha-form$":
+          "ha-selector$":
+            "ha-selector-select$":
+              "ha-select$": *acrylic-menu
+      "ha-form-grid$":
+        "ha-form$":
+          "ha-selector$":
+            "ha-selector-select$":
+              "ha-select$": *acrylic-menu
+          "ha-form-expandable$":
+            "ha-form$":
+              "ha-selector$":
+                "ha-selector-select$":
+                  "ha-select$": *acrylic-menu
+    "hui-view-background-editor$":
+      "ha-form$": *acrylic-form
   card-mod-more-info-yaml: |
     .: |
       ha-dropdown::part(menu),
@@ -400,6 +421,27 @@ Acrylic Dark:
     "ha-select$": *acrylic-menu
     "ha-base-time-input$": *acrylic-menu
     "ha-date-range-picker$": *acrylic-menu
+    "ha-form$": &acrylic-form
+      "ha-selector$":
+        "ha-selector-select$":
+          "ha-select$": *acrylic-menu
+      "ha-form-expandable$":
+        "ha-form$":
+          "ha-selector$":
+            "ha-selector-select$":
+              "ha-select$": *acrylic-menu
+      "ha-form-grid$":
+        "ha-form$":
+          "ha-selector$":
+            "ha-selector-select$":
+              "ha-select$": *acrylic-menu
+          "ha-form-expandable$":
+            "ha-form$":
+              "ha-selector$":
+                "ha-selector-select$":
+                  "ha-select$": *acrylic-menu
+    "hui-view-background-editor$":
+      "ha-form$": *acrylic-form
   card-mod-view-yaml: |
     .: |
       ha-dropdown::part(menu),
@@ -1221,6 +1263,27 @@ Acrylic Light:
     "ha-select$": *acrylic-menu
     "ha-base-time-input$": *acrylic-menu
     "ha-date-range-picker$": *acrylic-menu
+    "ha-form$": &acrylic-form
+      "ha-selector$":
+        "ha-selector-select$":
+          "ha-select$": *acrylic-menu
+      "ha-form-expandable$":
+        "ha-form$":
+          "ha-selector$":
+            "ha-selector-select$":
+              "ha-select$": *acrylic-menu
+      "ha-form-grid$":
+        "ha-form$":
+          "ha-selector$":
+            "ha-selector-select$":
+              "ha-select$": *acrylic-menu
+          "ha-form-expandable$":
+            "ha-form$":
+              "ha-selector$":
+                "ha-selector-select$":
+                  "ha-select$": *acrylic-menu
+    "hui-view-background-editor$":
+      "ha-form$": *acrylic-form
   card-mod-more-info-yaml: |
     .: |
       ha-dropdown::part(menu),
@@ -1245,6 +1308,27 @@ Acrylic Light:
     "ha-select$": *acrylic-menu
     "ha-base-time-input$": *acrylic-menu
     "ha-date-range-picker$": *acrylic-menu
+    "ha-form$": &acrylic-form
+      "ha-selector$":
+        "ha-selector-select$":
+          "ha-select$": *acrylic-menu
+      "ha-form-expandable$":
+        "ha-form$":
+          "ha-selector$":
+            "ha-selector-select$":
+              "ha-select$": *acrylic-menu
+      "ha-form-grid$":
+        "ha-form$":
+          "ha-selector$":
+            "ha-selector-select$":
+              "ha-select$": *acrylic-menu
+          "ha-form-expandable$":
+            "ha-form$":
+              "ha-selector$":
+                "ha-selector-select$":
+                  "ha-select$": *acrylic-menu
+    "hui-view-background-editor$":
+      "ha-form$": *acrylic-form
   card-mod-view-yaml: |
     .: |
       ha-dropdown::part(menu),
