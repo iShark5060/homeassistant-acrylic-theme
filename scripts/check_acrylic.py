@@ -50,6 +50,8 @@ def main() -> None:
     need("dropdown menu element", text.count("#menu {") == 8)
     need("deep dropdown search", text.count("$$ ha-dropdown$") == 8)
     need("card yaml kept", text.count("card-mod-card-yaml:") == 2)
+    need("panel cards stay sharp", text.count(":host-context(hui-panel-view)") == 2)
+    need("picture elements panel", text.count(":host(hui-picture-elements-card)") == 2)
     menus = MENUS.read_text(encoding="utf-8")
     need("menu module", "attachShadow" in menus and "#menu, #submenu" in menus)
     need("menu module blur", "var(--ha-card-backdrop-filter)" in menus)
