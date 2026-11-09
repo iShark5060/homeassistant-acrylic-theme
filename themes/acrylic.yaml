@@ -113,6 +113,9 @@ Acrylic Dark:
         :host(hui-map-card),
         :host(hui-iframe-card)
       ) ha-card {
+        --ha-card-backdrop-filter: none !important;
+        --ha-card-background: transparent !important;
+        --ha-card-glass-tint: transparent !important;
         --frosted-glass-card-layer-content: none;
         background: none !important;
         backdrop-filter: none !important;
@@ -125,7 +128,7 @@ Acrylic Dark:
       }
 
       /* Grain sits above the blur and under the card text.
-         ponytail: Arsenal also paints a 4% exclusion veil. That needs a third layer.
+         Arsenal also paints a 4% exclusion veil. That needs a third layer.
          These cards already spend ::before on the blur. */
       :where(:host(:not(mushroom-template-card):not(room-summary-card))) ha-card::after {
         content: var(--frosted-glass-card-layer-content, '');
@@ -1068,6 +1071,9 @@ Acrylic Light:
         :host(hui-map-card),
         :host(hui-iframe-card)
       ) ha-card {
+        --ha-card-backdrop-filter: none !important;
+        --ha-card-background: transparent !important;
+        --ha-card-glass-tint: transparent !important;
         --frosted-glass-card-layer-content: none;
         background: none !important;
         backdrop-filter: none !important;
@@ -1080,7 +1086,7 @@ Acrylic Light:
       }
 
       /* Grain sits above the blur and under the card text.
-         ponytail: Arsenal also paints a 4% exclusion veil. That needs a third layer.
+         Arsenal also paints a 4% exclusion veil. That needs a third layer.
          These cards already spend ::before on the blur. */
       :where(:host(:not(mushroom-template-card):not(room-summary-card))) ha-card::after {
         content: var(--frosted-glass-card-layer-content, '');
